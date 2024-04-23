@@ -17,6 +17,6 @@
         android:id="@+id/revenues"
         android:enabled="true"
         android:icon="@drawable/ic_revenues"
-        android:title="Minhas Receitas"
-        
+        android:title="Minhas Receitas"/>
+
 </menu>

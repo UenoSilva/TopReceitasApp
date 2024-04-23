@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "br.com.topreceitas"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "br.com.topreceitas"
-        minSdk = 29
+        minSdk = 24
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
