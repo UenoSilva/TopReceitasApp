@@ -1,7 +1,8 @@
-package br.com.topreceitas
+package br.com.topreceitas.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.topreceitas.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
