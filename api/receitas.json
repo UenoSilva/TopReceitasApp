@@ -1,0 +1,31 @@
+[
+  {
+    "titulo": "Isca de Frango Crocante",
+    "imagem": "",
+    "porcoes": 4,
+    "tempo": 2,
+    "categoria": [
+      {
+        "tipo": "Franco"
+      }
+    ],
+    "ingredientes": [
+      "500 gramas de peito de frango",
+      "1 colher de chá de sal",
+      "1 colher de chá de pimenta-do-reino preta em pó",
+      "3 de colheres de sopa Maionese Hellmann's Tradicional",
+      "1 xícara de chá de farinha de rosca",
+      "Óleo para fritar",
+      "3 colheres de sopa de Maionese Hellmann's Supreme"
+    ],
+    "preparo": [
+      "Corte o peito de frango em Iscas.",
+      "Tempere as Iscas de Frango com sal e pimenta.",
+      "Misture a Maionese Hellmann’s Tradicional no frango, cobrindo bem todas as partes.",
+      "Depois empane com a farinha de rosca.",
+      "Frite, aos poucos, em imersão, em óleo não muito quente, por 2 minutos de cada lado, ou até dourarem.",
+      "Escorra em papel-toalha e sirva acompanhado da Maionese Hellmann’s Supreme."
+    ],
+    "dicas": "Se desejar, prepare a isca de frango crocante na airfryer é só adicionar um fio de óleo ou azeite nas iscas, misturar bem e colocar na airfryer a 180ºC de 15 a 20 minutos ou até dourar. Na hora de servir, tragar mais opções de sabores e escolha sua Maionese Hellmann’s Saborizada preferida."
+  }
+]
