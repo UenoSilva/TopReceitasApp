@@ -20,6 +20,7 @@
             android:minHeight="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_menu"
             app:title="@string/app_name" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
