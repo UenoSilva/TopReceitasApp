@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.topreceitas.R
 import br.com.topreceitas.databinding.ReceitaItemBinding
 import br.com.topreceitas.domain.Receita
+import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 
 class ReceitasAdapter(
@@ -26,8 +27,9 @@ class ReceitasAdapter(
     override fun getItemCount() = receitas.size
 
     override fun onBindViewHolder(holder: ReceitasViewHolder, position: Int) {
-        Log.d("ndnanlkndsknklnk", "${receitas[position]}")
+        //Log.d("ndnanlkndsknklnk", "${receitas[position]}")
         holder.title.text = receitas[position].title
+        Glide.with(holder.itemView.context).load(receitas[position].image).into(holder.image)
         holder.portion.text = "${receitas[position].portion} pessoas"
         holder.timer.text = "${receitas[position].timer} min"
 
@@ -50,18 +52,11 @@ class ReceitasAdapter(
 
     inner class ReceitasViewHolder(private val binding: ReceitaItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        val image: ImageView
-        val title: TextView
-        val favorite: MaterialButton
-        val portion: TextView
-        val timer: TextView
+        val image: ImageView = binding.receitaItemImage
+        val title: TextView = binding.receitaItemName
+        val favorite: MaterialButton = binding.favoriteReceita
+        val portion: TextView = binding.receitaItemPorcao
+        val timer: TextView = binding.receitaItemTimer
 
-        init {
-            image = binding.receitaItemImage
-            title = binding.receitaItemName
-            favorite = binding.favoriteReceita
-            portion = binding.receitaItemPorcao
-            timer = binding.receitaItemTimer
-        }
     }
 }
