@@ -1,16 +1,20 @@
 package br.com.topreceitas.domain
 
+import com.google.gson.annotations.SerializedName
+
 data class Receita(
-    val title: String,
-    val image: String,
-    val portion: Int,
-    val timer: Int,
-    val category: Category,
-    val ingredients: MutableList<String>,
-    val preparation: MutableList<String>,
-    var isFavorite: Boolean
+    @SerializedName("titulo") val title: String?,
+    @SerializedName("imagem") val image: String?,
+    @SerializedName("porcoes") val portion: Int,
+    @SerializedName("tempo") val timer: Int,
+    @SerializedName("categoria") val category: List<Categoria>?,
+    @SerializedName("ingredientes") val ingredients: List<String>?,
+    @SerializedName("preparo") val preparation: List<String>?,
+    @SerializedName("dicas") val tips: String?,
+
+    var isFavorite: Boolean = false
 )
 
-data class Category(
-    val type: String
+data class Categoria(
+    @SerializedName("tipo") val type: String?
 )
