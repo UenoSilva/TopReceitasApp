@@ -66,6 +66,7 @@ class ReceitasFragment : Fragment() {
             Retrofit.Builder().baseUrl("https://uenosilva.github.io/TopReceitasApp/api/")
                 .addConverterFactory(GsonConverterFactory.create()).build()
         receitaApi = builder.create(ReceitaApi::class.java)
+        getAllReceitas()
     }
 
     private fun getAllReceitas() {
@@ -99,8 +100,11 @@ class ReceitasFragment : Fragment() {
     }
 
     private fun setupList(list: List<Receita>) {
-        val adapter = ReceitasAdapter(list)
-        binding.rvReceitas.adapter = adapter
+        //val adapter = ReceitasAdapter(list)
+        // binding.rvReceitas.adapter = adapter
+
+        receitasAdapter = ReceitasAdapter(list)
+        binding.rvReceitas.adapter = receitasAdapter
 
         Log.d("setup list", "${list.toString()}")
         //depois implementar o repository para receitas

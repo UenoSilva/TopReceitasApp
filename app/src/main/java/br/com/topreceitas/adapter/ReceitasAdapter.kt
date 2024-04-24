@@ -1,12 +1,13 @@
 package br.com.topreceitas.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.topreceitas.R
+import br.com.topreceitas.databinding.ReceitaItemBinding
 import br.com.topreceitas.domain.Receita
 import com.google.android.material.button.MaterialButton
 
@@ -18,13 +19,14 @@ class ReceitasAdapter(
     var receitasItemListFovorite: (Receita) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReceitasViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.receita_item, parent, false)
-        return ReceitasViewHolder(view)
+        val binding = ReceitaItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ReceitasViewHolder(binding)
     }
 
     override fun getItemCount() = receitas.size
 
     override fun onBindViewHolder(holder: ReceitasViewHolder, position: Int) {
+        Log.d("ndnanlkndsknklnk", "${receitas[position]}")
         holder.title.text = receitas[position].title
         holder.portion.text = "${receitas[position].portion} pessoas"
         holder.timer.text = "${receitas[position].timer} min"
@@ -46,7 +48,8 @@ class ReceitasAdapter(
         }
     }
 
-    inner class ReceitasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ReceitasViewHolder(private val binding: ReceitaItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
         val image: ImageView
         val title: TextView
         val favorite: MaterialButton
@@ -54,11 +57,11 @@ class ReceitasAdapter(
         val timer: TextView
 
         init {
-            image = view.findViewById(R.id.receita_item_image)
-            title = view.findViewById(R.id.receita_item_name)
-            favorite = view.findViewById(R.id.favorite_receita)
-            portion = view.findViewById(R.id.receita_item_porcao)
-            timer = view.findViewById(R.id.receita_item_timer)
+            image = binding.receitaItemImage
+            title = binding.receitaItemName
+            favorite = binding.favoriteReceita
+            portion = binding.receitaItemPorcao
+            timer = binding.receitaItemTimer
         }
     }
 }
