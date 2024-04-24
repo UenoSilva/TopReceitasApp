@@ -1,7 +1,7 @@
 [
   {
     "titulo": "Isca de Frango Crocante",
-    "imagem": "https://github.com/UenoSilva/TopReceitasApp/blob/main/api/images/Isca-de-Frango-Crocante.jpg",
+    "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Isca-de-Frango-Crocante.jpg",
     "porcoes": 4,
     "tempo": 30,
     "categoria": [
@@ -40,7 +40,7 @@
   },
   {
     "titulo": "Hambúrguer caseiro com cheddar e cebolas caramelizadas",
-    "imagem": "https://github.com/UenoSilva/TopReceitasApp/blob/main/api/images/Hamb%C3%BArguer-caseiro-com-cheddar-e-cebolas-caramelizadas.jpg",
+    "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Hamb%C3%BArguer-caseiro-com-cheddar-e-cebolas-caramelizadas.jpg",
     "porcoes": 4,
     "tempo": 40,
     "categoria": [
