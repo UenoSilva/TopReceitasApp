@@ -89,5 +89,160 @@
       }
     ],
     "dicas": ""
+  },
+
+  {
+    "titulo": "Bolo de Milho Fofinho e Cremoso",
+    "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Bolo-de-Milho-Fofinho-e-Cremoso.jpg",
+    "porcoes": 20,
+    "tempo": 60,
+    "categoria": [
+      {
+        "tipo": "Bolo"
+      }
+    ],
+    "ingredientes": [
+      {
+        "_titulo": "",
+        "_ingredientes": [
+          "4 ovos",
+          "1 pitada de sal",
+          "1 xícara de chá de óleo",
+          "1 xícara de chá de leite",
+          "2 xícaras de chá de açúcar",
+          "1/2 xícara de chá de farinha de trigo",
+          "1/2 xícara de chá de Amido de Milho Maizena",
+          "1 colher de sopa de fermento em pó",
+          "2 colheres de sopa de coco ralado (opcional)"
+        ]
+      }
+    ],
+    "preparo": [
+      {
+        "preparo_titulo": "",
+        "preparo_modo": [
+          "Pré-aqueça o forno em temperatura média (180° C).",
+          "Unte e enfarinhe uma assadeira retangular média.",
+          "No copo do liquidificador, coloque os ovos, o milho, o sal, o óleo, o leite e o açúcar, e bata até ficar homogêneo.",
+          "Acrescente a farinha de trigo, a MAIZENA® e o fermento, e bata novamente.",
+          "Disponha a massa na assadeira, polvilhe na superfície o coco ralado e leve ao forno por 45 minutos, ou até que um palito, depois de espetado na massa saia limpo.",
+          "Retire o forno, deixe esfriar, desenforme e corte em quadrados. Sirva a seguir!"
+        ]
+      }
+    ],
+    "dicas": ""
+  },
+  {
+    "titulo": "Barrinhas de cereais",
+    "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Barrinhas-de-cereais.jpg",
+    "porcoes": 10,
+    "tempo": 45,
+    "categoria": [
+      {
+        "tipo": "Doces"
+      }
+    ],
+    "ingredientes": [
+      {
+        "_titulo": "",
+        "_ingredientes": [
+          "2 bananas amassadas",
+          "1 1/2 xícaras de chá de aveia em flocos grossos Mãe Terra",
+          "1/3 xícara de chá de uvas passas brancas",
+          "1/3 xícara de chá de coco ralado fresco",
+          "2 colheres de sopa de sementes de linhaça Mãe Terra",
+          "2 colheres de sopa de sementes de gergelim branco Mãe Terra",
+          "1/3 xícara de chá de castanha-do-pará picada",
+          "1/4 xícara de chá de melado de cana"
+        ]
+      }
+    ],
+    "preparo": [
+      {
+        "preparo_titulo": "",
+        "preparo_modo": [
+          "Preaqueça o forno a 180°C.",
+          "Misture bem todos os ingredientes com as bananas amassadas e o melado de cana em um recipiente.",
+          "Transfira a mistura para a forma e espalhe com uma colher até nivelar todos os lados com a mesma altura. Pressione um pouco para os ingredientes ficarem aderidos uns aos outros.",
+          "Leve para assar por 30 minutos ou até dourar levemente as bordas.",
+          "Espere esfriar para cortar as barrinhas em tamanhos iguais."
+        ]
+      }
+    ],
+    "dicas": ""
+  },
+  {
+    "titulo": "Arroz soltinho",
+    "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Arroz-soltinho.jpg",
+    "porcoes": 4,
+    "tempo": 20,
+    "categoria": [
+      {
+        "tipo": "Arroz"
+      }
+    ],
+    "ingredientes": [
+      {
+        "_titulo": "",
+        "_ingredientes": [
+          "1 xícaras de chá de arroz branco",
+          "1 sachê de Tempero em Pó Knorr Meu Arroz",
+          "1 colher de sopa de óleo",
+          "2 xícaras de chá de água"
+        ]
+      }
+    ],
+    "preparo": [
+      {
+        "preparo_titulo": "",
+        "preparo_modo": [
+          "Aqueça uma panela com óleo. Quando aquecer adicione o arroz e refogue por 1 minuto.",
+          "Tempere com o Tempero em Pó Knorr Meu Arroz.",
+          "Adicione a água fervente, misture e deixe em fogo médio até a água em excesso secar.",
+          "Diminua o fogo e tampe parcialmente a panela. Deixe cozinhar até que o arroz absorva toda a água.",
+          "Desligue o fogo e mantenha o arroz tampado completamente por 5 minutos. Sirva em seguida."
+        ]
+      }
+    ],
+    "dicas": ""
+  },
+  {
+    "titulo": "Pão de queijo",
+    "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/P%C3%A3o-de-queijo.jpg",
+    "porcoes": 20,
+    "tempo": 40,
+    "categoria": [
+      {
+        "tipo": "Pão"
+      }
+    ],
+    "ingredientes": [
+      {
+        "_titulo": "",
+        "_ingredientes": [
+          "100 ml de leite integral",
+          "40 gramas de manteiga",
+          "200 gramas de polvilho azedo Mãe Terra",
+          "1 ovo",
+          "180 gramas de queijo minas meia cura ralado",
+          "1 colher (café) de sal Maríssimo Mãe Terra"
+        ]
+      }
+    ],
+    "preparo": [
+      {
+        "preparo_titulo": "",
+        "preparo_modo": [
+          "Ferva o leite com a manteiga e despeje sobre o polvilho azedo Mãe Terra, escaldando-o. Misture e espere amornar.",
+          "Acrescente o ovo e sove até obter uma massa homogênea. Junte o queijo ralado, o sal Maríssimo Mãe Terra e misture bem.",
+          "Se necessário, acrescente mais leite para ajustar a consistência.",
+          "Faça bolinhas do tamanho desejado, com as mãos untadas com óleo.",
+          "Descanse a massa por pelo menos 30 minutos na geladeira.",
+          "Preaqueça o forno a 180ºC.",
+          "Asse até dourar, aproximadamente 15 a 20 minutos."
+        ]
+      }
+    ],
+    "dicas": ""
   }
 ]
