@@ -3,29 +3,91 @@
     "titulo": "Isca de Frango Crocante",
     "imagem": "",
     "porcoes": 4,
-    "tempo": 2,
+    "tempo": 30,
     "categoria": [
       {
-        "tipo": "Franco"
+        "tipo": "Salgados"
       }
     ],
     "ingredientes": [
-      "500 gramas de peito de frango",
-      "1 colher de chá de sal",
-      "1 colher de chá de pimenta-do-reino preta em pó",
-      "3 de colheres de sopa Maionese Hellmann's Tradicional",
-      "1 xícara de chá de farinha de rosca",
-      "Óleo para fritar",
-      "3 colheres de sopa de Maionese Hellmann's Supreme"
+      {
+        "ingredientes_titulo": "",
+        "ingredientes_ingredientes": [
+          "500 gramas de peito de frango",
+          "1 colher de chá de sal",
+          "1 colher de chá de pimenta-do-reino preta em pó",
+          "3 de colheres de sopa Maionese Hellmann's Tradicional",
+          "1 xícara de chá de farinha de rosca",
+          "Óleo para fritar",
+          "3 colheres de sopa de Maionese Hellmann's Supreme"
+        ]
+      }
     ],
     "preparo": [
-      "Corte o peito de frango em Iscas.",
-      "Tempere as Iscas de Frango com sal e pimenta.",
-      "Misture a Maionese Hellmann’s Tradicional no frango, cobrindo bem todas as partes.",
-      "Depois empane com a farinha de rosca.",
-      "Frite, aos poucos, em imersão, em óleo não muito quente, por 2 minutos de cada lado, ou até dourarem.",
-      "Escorra em papel-toalha e sirva acompanhado da Maionese Hellmann’s Supreme."
+      {
+        "preparo_titulo": "",
+        "preparo_modo": [
+          "Corte o peito de frango em Iscas.",
+          "Tempere as Iscas de Frango com sal e pimenta.",
+          "Misture a Maionese Hellmann’s Tradicional no frango, cobrindo bem todas as partes.",
+          "Depois empane com a farinha de rosca.",
+          "Frite, aos poucos, em imersão, em óleo não muito quente, por 2 minutos de cada lado, ou até dourarem.",
+          "Escorra em papel-toalha e sirva acompanhado da Maionese Hellmann’s Supreme."
+        ]
+      }
     ],
     "dicas": "Se desejar, prepare a isca de frango crocante na airfryer é só adicionar um fio de óleo ou azeite nas iscas, misturar bem e colocar na airfryer a 180ºC de 15 a 20 minutos ou até dourar. Na hora de servir, tragar mais opções de sabores e escolha sua Maionese Hellmann’s Saborizada preferida."
+  },
+  {
+    "titulo": "Hambúrguer caseiro com cheddar e cebolas caramelizadas",
+    "imagem": "",
+    "porcoes": 4,
+    "tempo": 40,
+    "categoria": [
+      {
+        "tipo": "Sanduíche"
+      }
+    ],
+    "ingredientes": [
+      {
+        "ingredientes_titulo": "Hamburguer",
+        "ingredientes_ingredientes": [
+          "800 gramas de carne moída",
+          "1 colher de chá de sal",
+          "1 colheres de chá de pimenta-do-reino preta moída na hora",
+          "3 colheres de sopa de óleo",
+          "4 fatias de queijo cheddar",
+          "4 colheres de sopa de Maionese Chipotle (sabor pimenta) Hellmann's"
+        ]
+      },
+      {
+        "_titulo": "Cebolas caramelizadas",
+        "_ingrediente": [
+          "1 cebola roxa fatiada",
+          "1 colher de chá de margarina",
+          "1/2 colher de sopa de açúcar mascavo",
+          "1 colher de sopa de molho de soja"
+        ]
+      }
+    ],
+    "preparo": [
+      {
+        "preparo_titulo": "Cebolas caramelizadas",
+        "preparo_modo": [
+          "Aqueça rapidamente uma panela larga e adicione a margarina. Quando começar a derreter acrescente a cebola e cozinhe em fogo médio, mexendo sempre. Quando a cebola estiver dourada junte o molho shoyu, o açúcar mascavo e cozinhe até dourar. Reserve."
+        ]
+      },
+      {
+        "preparo_titulo": "Hamburguer",
+        "preparo_modo": [
+          "Tempere a carne com sal e pimenta do reino.",
+          "Separe a carne em 4 porções. Molde os 4 hambúrgueres com a ajuda de um aro de metal ou na palma das mãos. Embale em papel filme e leve à geladeira por 1 hora.",
+          "Aqueça bem uma grelha ou frigideira e unte com óleo. Quando estiver bem quente grelhe o hambúrguer até que os dois lados fiquem bem dourados.",
+          "Coloque os hambúrgueres grelhados numa tábua e disponha as fatias de queijo por cima. Abafe com uma tampa de panela para que o queijo derreta.",
+          "Monte os hambúrgueres passando a maionese Hellmann's Chipotle nos dois lados dos pães, coloque o hambúrguer com o queijo por cima e finalize com as cebolas caramelizadas."
+        ]
+      }
+    ],
+    "dicas": ""
   }
 ]
