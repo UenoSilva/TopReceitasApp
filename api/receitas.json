@@ -103,8 +103,8 @@
     ],
     "ingredientes": [
       {
-        "_titulo": "",
-        "_ingredientes": [
+        "ingredientes_titulo": "",
+        "ingredientes_ingredientes": [
           "4 ovos",
           "1 pitada de sal",
           "1 xícara de chá de óleo",
@@ -144,8 +144,8 @@
     ],
     "ingredientes": [
       {
-        "_titulo": "",
-        "_ingredientes": [
+        "ingredientes_titulo": "",
+        "ingredientes_ingredientes": [
           "2 bananas amassadas",
           "1 1/2 xícaras de chá de aveia em flocos grossos Mãe Terra",
           "1/3 xícara de chá de uvas passas brancas",
@@ -183,8 +183,8 @@
     ],
     "ingredientes": [
       {
-        "_titulo": "",
-        "_ingredientes": [
+        "ingredientes_titulo": "",
+        "ingredientes_ingredientes": [
           "1 xícaras de chá de arroz branco",
           "1 sachê de Tempero em Pó Knorr Meu Arroz",
           "1 colher de sopa de óleo",
@@ -218,8 +218,8 @@
     ],
     "ingredientes": [
       {
-        "_titulo": "",
-        "_ingredientes": [
+        "ingredientes_titulo": "",
+        "ingredientes_ingredientes": [
           "100 ml de leite integral",
           "40 gramas de manteiga",
           "200 gramas de polvilho azedo Mãe Terra",
