@@ -11,17 +11,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import br.com.topreceitas.R
 import br.com.topreceitas.adapter.ReceitasAdapter
 import br.com.topreceitas.data.ReceitaApi
 import br.com.topreceitas.databinding.FragmentReceitasBinding
 import br.com.topreceitas.domain.Receita
+import br.com.topreceitas.manage.ReceitasManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 @Suppress("DEPRECATION")
 class ReceitasFragment : Fragment() {
@@ -31,6 +30,8 @@ class ReceitasFragment : Fragment() {
 
     private lateinit var receitaApi: ReceitaApi
     private lateinit var receitasAdapter: ReceitasAdapter
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +44,7 @@ class ReceitasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRetrofit()
+
     }
 
     override fun onResume() {
@@ -102,8 +104,8 @@ class ReceitasFragment : Fragment() {
     private fun setupList(list: List<Receita>) {
         //val adapter = ReceitasAdapter(list)
         // binding.rvReceitas.adapter = adapter
-
-        receitasAdapter = ReceitasAdapter(list)
+        ReceitasManager.addReceita(list)
+        receitasAdapter = context?.let { ReceitasAdapter(it,list) }!!
         binding.rvReceitas.adapter = receitasAdapter
 
         Log.d("setup list", "${list.toString()}")
@@ -129,6 +131,5 @@ class ReceitasFragment : Fragment() {
             return networkInfo.isConnected
         }
     }
-
 
 }

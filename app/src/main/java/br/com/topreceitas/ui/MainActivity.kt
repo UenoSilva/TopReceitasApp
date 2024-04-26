@@ -9,16 +9,20 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import br.com.topreceitas.R
 import br.com.topreceitas.adapter.ViewPageAdapter
 import br.com.topreceitas.databinding.ActivityMainBinding
+import br.com.topreceitas.manage.ReceitasManager
 import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewPageSetup()
+
+        ReceitasManager.initialize()
     }
 
     private fun viewPageSetup() {

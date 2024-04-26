@@ -1,5 +1,7 @@
 package br.com.topreceitas.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.topreceitas.R
 import br.com.topreceitas.databinding.ReceitaItemBinding
 import br.com.topreceitas.domain.Receita
+import br.com.topreceitas.ui.ReceitaDetailsActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 
 class ReceitasAdapter(
+    private val context: Context,
     private val receitas: List<Receita>,
     private val isFavorite: Boolean = false
 ) : RecyclerView.Adapter<ReceitasAdapter.ReceitasViewHolder>() {
@@ -47,6 +51,12 @@ class ReceitasAdapter(
             } else {
                 holder.favorite.setIconResource(R.drawable.ic_favorite_border)
             }
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ReceitaDetailsActivity::class.java)
+            intent.putExtra("position", position)
+            context.startActivity(intent)
         }
     }
 

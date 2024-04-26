@@ -16,6 +16,9 @@
         android:theme="@style/Theme.TopReceitas"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ReceitaDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
