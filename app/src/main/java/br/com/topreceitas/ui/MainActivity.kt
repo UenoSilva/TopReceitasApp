@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         viewPageSetup()
 
         ReceitasManager.initialize()
+
+        setupListener()
     }
 
     private fun viewPageSetup() {
@@ -69,5 +71,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
         false
+    }
+
+    private fun setupListener(){
+        binding.topAppBar.setNavigationOnClickListener {
+            binding.drawerLayout.open()
+        }
+
+        binding.navigationView.setNavigationItemSelectedListener { menuItem ->
+            menuItem.isChecked = true
+            binding.drawerLayout.close()
+            true
+        }
     }
 }

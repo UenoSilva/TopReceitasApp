@@ -26,6 +26,7 @@ class ReceitaDetailsActivity : AppCompatActivity() {
 
         getIntentMethod()
         getInformation()
+        setupListener()
     }
 
     private fun getIntentMethod() {
@@ -69,5 +70,11 @@ class ReceitaDetailsActivity : AppCompatActivity() {
 
         binding.tvIngredients.text = text_ingredients
         binding.tvPreparoReceita.text = text_preparation
+    }
+
+    private fun setupListener(){
+        binding.topAppBar.setNavigationOnClickListener {
+            finish()
+        }
     }
 }
