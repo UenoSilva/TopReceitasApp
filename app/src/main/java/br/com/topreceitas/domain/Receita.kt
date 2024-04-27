@@ -32,11 +32,7 @@ data class Ingredients(
     val ingredientes_titulo: String,
     @SerializedName("ingredientes_ingredientes")
     val ingredientes_ingredientes: List<String>
-){
-    fun ue(){
-
-    }
-}
+)
 
 data class Preparo(
     @SerializedName("preparo_titulo")

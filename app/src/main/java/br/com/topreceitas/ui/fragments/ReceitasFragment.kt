@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import br.com.topreceitas.adapter.ReceitasAdapter
 import br.com.topreceitas.data.ReceitaApi
+import br.com.topreceitas.data.local.ReceitasRepository
 import br.com.topreceitas.databinding.FragmentReceitasBinding
 import br.com.topreceitas.domain.Receita
 import br.com.topreceitas.manage.ReceitasManager
@@ -31,8 +32,6 @@ class ReceitasFragment : Fragment() {
     private lateinit var receitaApi: ReceitaApi
     private lateinit var receitasAdapter: ReceitasAdapter
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,7 +49,7 @@ class ReceitasFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (checkForIntent(context)) {
-            Log.d("GET ALL RECEITAS", "RECEITAS AQUI UJIII")
+            //Log.d("GET ALL RECEITAS", "RECEITAS AQUI UJIII")
             getAllReceitas()
         } else {
             Log.e("ERRor", "deu um error")
@@ -108,8 +107,12 @@ class ReceitasFragment : Fragment() {
         receitasAdapter = context?.let { ReceitasAdapter(it,list) }!!
         binding.rvReceitas.adapter = receitasAdapter
 
-        Log.d("setup list", "${list.toString()}")
+        //Log.d("setup list", "${list.toString()}")
         //depois implementar o repository para receitas
+        receitasAdapter.receitasItemListFovorite = { receita ->
+            ReceitasRepository(requireContext()).save(receita)
+            Log.e("salvouuuuuuu", receita.toString())
+        }
 
     }
 
