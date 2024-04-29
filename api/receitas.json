@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "titulo": "Isca de Frango Crocante",
     "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Isca-de-Frango-Crocante.jpg",
     "porcoes": 4,
@@ -39,6 +40,7 @@
     "dicas": "Se desejar, prepare a isca de frango crocante na airfryer é só adicionar um fio de óleo ou azeite nas iscas, misturar bem e colocar na airfryer a 180ºC de 15 a 20 minutos ou até dourar. Na hora de servir, tragar mais opções de sabores e escolha sua Maionese Hellmann’s Saborizada preferida."
   },
   {
+    "id": 1,
     "titulo": "Hambúrguer caseiro com cheddar e cebolas caramelizadas",
     "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Hamb%C3%BArguer-caseiro-com-cheddar-e-cebolas-caramelizadas.jpg",
     "porcoes": 4,
@@ -90,8 +92,8 @@
     ],
     "dicas": ""
   },
-
   {
+    "id": 2,
     "titulo": "Bolo de Milho Fofinho e Cremoso",
     "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Bolo-de-Milho-Fofinho-e-Cremoso.jpg",
     "porcoes": 20,
@@ -133,6 +135,7 @@
     "dicas": ""
   },
   {
+    "id": 3,
     "titulo": "Barrinhas de cereais",
     "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Barrinhas-de-cereais.jpg",
     "porcoes": 10,
@@ -172,6 +175,7 @@
     "dicas": ""
   },
   {
+    "id": 4,
     "titulo": "Arroz soltinho",
     "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/Arroz-soltinho.jpg",
     "porcoes": 4,
@@ -207,6 +211,7 @@
     "dicas": ""
   },
   {
+    "id": 5,
     "titulo": "Pão de queijo",
     "imagem": "https://raw.githubusercontent.com/UenoSilva/TopReceitasApp/main/api/images/P%C3%A3o-de-queijo.jpg",
     "porcoes": 20,
