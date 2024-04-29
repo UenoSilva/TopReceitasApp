@@ -6,6 +6,7 @@ object ReceitaContract {
 
     object ReceitaEntry : BaseColumns {
         const val TABLE_NAME = "tb_receita"
+        const val COLUMN_NAME_ID = "receita_id"
         const val COLUMN_NAME_TITULO = "titulo"
         const val COLUMN_NAME_IMAGE = "imgagem"
         const val COLUMN_NAME_PORCAO = "porcoes"
@@ -19,6 +20,7 @@ object ReceitaContract {
     const val TABLE_RECEITA =
         "CREATE TABLE ${ReceitaEntry.TABLE_NAME} (" +
                 "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
+                "${ReceitaEntry.COLUMN_NAME_ID} INTEGER, " +
                 "${ReceitaEntry.COLUMN_NAME_TITULO} TEXT," +
                 "${ReceitaEntry.COLUMN_NAME_IMAGE} TEXT," +
                 "${ReceitaEntry.COLUMN_NAME_PORCAO} INTEGER, " +

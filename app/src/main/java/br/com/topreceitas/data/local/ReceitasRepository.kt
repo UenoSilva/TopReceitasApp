@@ -5,8 +5,10 @@ import android.content.ContentValues
 import android.content.Context
 import android.provider.BaseColumns
 import android.util.Log
+import android.widget.Toast
 import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_CATEGORIA
 import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_DICAS
+import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_ID
 import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_IMAGE
 import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_INGREDIENTES
 import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_PORCAO
@@ -24,7 +26,7 @@ import com.google.gson.reflect.TypeToken
 
 class ReceitasRepository(private val context: Context) {
 
-    fun save(receita: Receita): Boolean {
+    private fun save(receita: Receita): Boolean {
         var isSaved = false
         val dbHelper = ReceitasDbHelper(context)
         val db = dbHelper.writableDatabase
@@ -32,6 +34,7 @@ class ReceitasRepository(private val context: Context) {
 
         try {
             val values = ContentValues().apply {
+                put(COLUMN_NAME_ID, receita.id)
                 put(COLUMN_NAME_TITULO, receita.title)
                 put(COLUMN_NAME_IMAGE, receita.image)
                 put(COLUMN_NAME_PORCAO, receita.portion)
@@ -61,7 +64,83 @@ class ReceitasRepository(private val context: Context) {
         return isSaved
     }
 
+    private fun findViewById(id: Int): Receita {
+        val dbHelper = ReceitasDbHelper(context)
+        val db = dbHelper.readableDatabase
+        val gson = Gson()
+        val columns = arrayOf(
+            BaseColumns._ID,
+            COLUMN_NAME_ID,
+            COLUMN_NAME_TITULO,
+            COLUMN_NAME_IMAGE,
+            COLUMN_NAME_PORCAO,
+            COLUMN_NAME_TIMER,
+            COLUMN_NAME_CATEGORIA,
+            COLUMN_NAME_INGREDIENTES,
+            COLUMN_NAME_PREPARO,
+            COLUMN_NAME_DICAS
+        )
+        val filter = "$COLUMN_NAME_ID = ?"
+        val filterValues = arrayOf(id.toString())
+        val cursor = db.query(
+            TABLE_NAME,
+            columns,
+            filter,
+            filterValues,
+            null,
+            null,
+            null
+        )
+        var itemReceita = Receita(
+            id = -1,
+            title = null,
+            image = null,
+            portion = 0,
+            timer = 0,
+            category = null,
+            ingredient = null,
+            preparation = null,
+            tips = null
+        )
+        cursor.use {
+            while (it.moveToNext()) {
+                val id = it.getInt(it.getColumnIndexOrThrow(COLUMN_NAME_ID))
+                val titulo = it.getString(it.getColumnIndexOrThrow(COLUMN_NAME_TITULO))
+                val imagem = it.getString(it.getColumnIndexOrThrow(COLUMN_NAME_IMAGE))
+                val porcoes = it.getInt(it.getColumnIndexOrThrow(COLUMN_NAME_PORCAO))
+                val tempo = it.getInt(it.getColumnIndexOrThrow(COLUMN_NAME_TIMER))
+                val categoriaJson = it.getString(it.getColumnIndexOrThrow(COLUMN_NAME_CATEGORIA))
+                val ingredientesJson =
+                    it.getString(it.getColumnIndexOrThrow(COLUMN_NAME_INGREDIENTES))
+                val preparoJson = it.getString(it.getColumnIndexOrThrow(COLUMN_NAME_PREPARO))
+                val dicas = it.getString(it.getColumnIndexOrThrow(COLUMN_NAME_DICAS))
 
+                val categoryType = object : TypeToken<List<Categoria>>() {}.type
+                val ingredientType = object : TypeToken<List<Ingredients>>() {}.type
+                val preparoType = object : TypeToken<List<Preparo>>() {}.type
+
+                val categoriaList: List<Categoria> = gson.fromJson(categoriaJson, categoryType)
+                val ingredientesList: List<Ingredients> =
+                    gson.fromJson(ingredientesJson, ingredientType)
+                val preparoList: List<Preparo> = gson.fromJson(preparoJson, preparoType)
+
+                itemReceita = Receita(
+                    id,
+                    titulo,
+                    imagem,
+                    porcoes,
+                    tempo,
+                    categoriaList,
+                    ingredientesList,
+                    preparoList,
+                    dicas,
+                    true
+                )
+            }
+        }
+        cursor.close()
+        return itemReceita
+    }
 
     @SuppressLint("Recycle")
     fun getAllReceitas(): MutableList<Receita> {
@@ -70,6 +149,7 @@ class ReceitasRepository(private val context: Context) {
         val gson = Gson()
         val columns = arrayOf(
             BaseColumns._ID,
+            COLUMN_NAME_ID,
             COLUMN_NAME_TITULO,
             COLUMN_NAME_IMAGE,
             COLUMN_NAME_PORCAO,
@@ -92,6 +172,7 @@ class ReceitasRepository(private val context: Context) {
 
         cursor.use {
             while (it.moveToNext()) {
+                val id = it.getInt(it.getColumnIndexOrThrow(COLUMN_NAME_ID))
                 val titulo = it.getString(it.getColumnIndexOrThrow(COLUMN_NAME_TITULO))
                 val imagem = it.getString(it.getColumnIndexOrThrow(COLUMN_NAME_IMAGE))
                 val porcoes = it.getInt(it.getColumnIndexOrThrow(COLUMN_NAME_PORCAO))
@@ -112,6 +193,7 @@ class ReceitasRepository(private val context: Context) {
                 val preparoList: List<Preparo> = gson.fromJson(preparoJson, preparoType)
 
                 val receita = Receita(
+                    id,
                     titulo,
                     imagem,
                     porcoes,
@@ -126,5 +208,15 @@ class ReceitasRepository(private val context: Context) {
             }
         }
         return receitaList
+    }
+
+    fun saveIfNotExist(receita: Receita) {
+        val receitaId = findViewById(receita.id)
+        //Log.d("jhkjhjkh", receitaId.toString())
+        if (receitaId.id == -1) {
+            save(receita)
+        } else {
+            Toast.makeText(context, "Essa receita já está em favoritos!", Toast.LENGTH_LONG).show()
+        }
     }
 }

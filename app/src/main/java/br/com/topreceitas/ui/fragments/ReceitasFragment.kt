@@ -110,7 +110,7 @@ class ReceitasFragment : Fragment() {
         //Log.d("setup list", "${list.toString()}")
         //depois implementar o repository para receitas
         receitasAdapter.receitasItemListFovorite = { receita ->
-            ReceitasRepository(requireContext()).save(receita)
+            ReceitasRepository(requireContext()).saveIfNotExist(receita)
             Log.e("salvouuuuuuu", receita.toString())
         }
 

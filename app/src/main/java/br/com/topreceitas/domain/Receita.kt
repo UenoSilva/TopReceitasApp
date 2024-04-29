@@ -3,6 +3,8 @@ package br.com.topreceitas.domain
 import com.google.gson.annotations.SerializedName
 
 data class Receita(
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("titulo")
     val title: String?,
     @SerializedName("imagem")
@@ -19,7 +21,6 @@ data class Receita(
     val preparation: List<Preparo>?,
     @SerializedName("dicas")
     val tips: String?,
-
     var isFavorite: Boolean = false
 )
 
