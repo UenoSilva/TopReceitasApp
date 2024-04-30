@@ -37,8 +37,12 @@ class ReceitasAdapter(
         holder.portion.text = "${receitas[position].portion} pessoas"
         holder.timer.text = "${receitas[position].timer} min"
 
-        if (isFavorite) {
+        if (receitas[position].isFavorite) {
             holder.favorite.setIconResource(R.drawable.ic_favorite)
+        }
+
+        if(receitas.isEmpty()){
+
         }
 
         holder.favorite.setOnClickListener {
@@ -61,12 +65,10 @@ class ReceitasAdapter(
     }
 
     inner class ReceitasViewHolder(private val binding: ReceitaItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         val image: ImageView = binding.receitaItemImage
         val title: TextView = binding.receitaItemName
         val favorite: MaterialButton = binding.favoriteReceita
         val portion: TextView = binding.receitaItemPorcao
         val timer: TextView = binding.receitaItemTimer
-
     }
 }

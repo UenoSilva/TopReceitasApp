@@ -53,7 +53,7 @@ class FavoriteFragment : Fragment() {
         receitas = repository.getAllReceitas()
         setupList(receitas)
 
-        Log.e("ueno1", "ahhhhhhhhh")
+        //Log.e("ueno1", "ahhhhhhhhh")
     }
 
     override fun onDestroy() {
@@ -64,6 +64,12 @@ class FavoriteFragment : Fragment() {
     private fun setupList(receitas: List<Receita>) {
         val receitaAdapter = ReceitasAdapter(requireContext(), receitas)
         binding.rvReceitasFavorite.adapter = receitaAdapter
+
+        if(receitas.isEmpty()){
+            binding.emptyStateFavoriteReceita.visibility = View.VISIBLE
+        }else{
+            binding.emptyStateFavoriteReceita.visibility = View.GONE
+        }
     }
 
 }
