@@ -35,7 +35,7 @@ class ReceitasFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentReceitasBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -43,7 +43,6 @@ class ReceitasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRetrofit()
-
     }
 
     override fun onResume() {
@@ -58,7 +57,6 @@ class ReceitasFragment : Fragment() {
             binding.containerStatusInternet.visibility = View.VISIBLE
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -115,14 +113,14 @@ class ReceitasFragment : Fragment() {
 
         //Log.d("setup list", "${list.toString()}")
         //depois implementar o repository para receitas
-        receitasAdapter.receitasItemListFovorite = { receita ->
+        receitasAdapter.receitaItemAdd = { receita ->
             ReceitasRepository(requireContext()).saveIfNotExist(receita)
-            Log.e("salvouuuuuuu", receita.toString())
+            //Log.e("salvouuuuuuu", receita.toString())
         }
     }
 
     private fun checkForIntent(context: Context?): Boolean {
-        var connectivityManager =
+        val connectivityManager =
             context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             val network = connectivityManager.activeNetwork ?: return false

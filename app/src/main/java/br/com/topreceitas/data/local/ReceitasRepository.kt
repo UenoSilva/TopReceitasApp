@@ -168,7 +168,7 @@ class ReceitasRepository(private val context: Context) {
             null,
             null
         )
-        var receitaList = mutableListOf<Receita>()
+        val receitaList = mutableListOf<Receita>()
 
         cursor.use {
             while (it.moveToNext()) {
@@ -210,11 +210,21 @@ class ReceitasRepository(private val context: Context) {
         return receitaList
     }
 
+
+    fun delete(id: Int) {
+        val dbHelper = ReceitasDbHelper(context)
+        val db = dbHelper.readableDatabase
+        val filter = "$COLUMN_NAME_ID = ?"
+        val filterValues = arrayOf(id.toString())
+
+        db.delete(TABLE_NAME, filter, filterValues)
+    }
+
     fun saveIfNotExist(receita: Receita) {
         val receitaId = findViewById(receita.id)
-        //Log.d("jhkjhjkh", receitaId.toString())
         if (receitaId.id == -1) {
             save(receita)
+            Toast.makeText(context, "Receita: ${receita.title} adicionada aos favoritos!", Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(context, "Essa receita já está em favoritos!", Toast.LENGTH_LONG).show()
         }

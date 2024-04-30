@@ -1,13 +1,11 @@
 package br.com.topreceitas.ui.fragments
 
-import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.com.topreceitas.R
+import android.widget.Toast
 import br.com.topreceitas.adapter.ReceitasAdapter
 import br.com.topreceitas.data.local.ReceitasRepository
 import br.com.topreceitas.databinding.FragmentFavoriteBinding
@@ -19,41 +17,36 @@ class FavoriteFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var receitas: MutableList<Receita>
+    private lateinit var receitaAdapter: ReceitasAdapter
+    private lateinit var repository: ReceitasRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val repository = ReceitasRepository(requireContext())
+        repository = ReceitasRepository(requireContext())
         receitas = repository.getAllReceitas()
         setupList(receitas)
     }
 
     override fun onStart() {
         super.onStart()
-
-        val repository = ReceitasRepository(requireContext())
+        repository = ReceitasRepository(requireContext())
         receitas = repository.getAllReceitas()
         setupList(receitas)
-
-        Log.e("ueno1", "ahhhhhhhhh")
     }
 
     override fun onResume() {
         super.onResume()
-
-        val repository = ReceitasRepository(requireContext())
+        repository = ReceitasRepository(requireContext())
         receitas = repository.getAllReceitas()
         setupList(receitas)
-
-        //Log.e("ueno1", "ahhhhhhhhh")
     }
 
     override fun onDestroy() {
@@ -62,12 +55,21 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun setupList(receitas: List<Receita>) {
-        val receitaAdapter = ReceitasAdapter(requireContext(), receitas)
+        receitaAdapter = ReceitasAdapter(requireContext(), receitas)
         binding.rvReceitasFavorite.adapter = receitaAdapter
 
-        if(receitas.isEmpty()){
+        receitaAdapter.receitaImteRemove = { receita ->
+            ReceitasRepository(requireContext()).delete(receita.id)
+            binding.rvReceitasFavorite.adapter =
+                ReceitasAdapter(requireContext(), repository.getAllReceitas())
+            onResume()
+
+            Toast.makeText(context, "Receita removida!", Toast.LENGTH_LONG).show()
+        }
+
+        if (receitas.isEmpty()) {
             binding.emptyStateFavoriteReceita.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.emptyStateFavoriteReceita.visibility = View.GONE
         }
     }
