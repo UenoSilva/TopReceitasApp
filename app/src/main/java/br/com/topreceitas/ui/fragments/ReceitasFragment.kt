@@ -53,6 +53,9 @@ class ReceitasFragment : Fragment() {
             getAllReceitas()
         } else {
             Log.e("ERRor", "deu um error")
+            binding.pbLoader.visibility = View.GONE
+            binding.rvReceitas.visibility = View.GONE
+            binding.containerStatusInternet.visibility = View.VISIBLE
         }
     }
 
@@ -94,7 +97,6 @@ class ReceitasFragment : Fragment() {
             override fun onFailure(call: Call<List<Receita>>, t: Throwable) {
                 Log.e("getAllReceitas", "Falha na chamada da API: ${t.message}")
                 Toast.makeText(context, "Falha na chamada da API.", Toast.LENGTH_SHORT).show()
-
             }
 
         })
@@ -104,8 +106,12 @@ class ReceitasFragment : Fragment() {
         //val adapter = ReceitasAdapter(list)
         // binding.rvReceitas.adapter = adapter
         ReceitasManager.addReceita(list)
-        receitasAdapter = context?.let { ReceitasAdapter(it,list) }!!
+        receitasAdapter = context?.let { ReceitasAdapter(it, list) }!!
         binding.rvReceitas.adapter = receitasAdapter
+
+        binding.pbLoader.visibility = View.GONE
+        binding.rvReceitas.visibility = View.VISIBLE
+        binding.containerStatusInternet.visibility = View.GONE
 
         //Log.d("setup list", "${list.toString()}")
         //depois implementar o repository para receitas
@@ -113,7 +119,6 @@ class ReceitasFragment : Fragment() {
             ReceitasRepository(requireContext()).saveIfNotExist(receita)
             Log.e("salvouuuuuuu", receita.toString())
         }
-
     }
 
     private fun checkForIntent(context: Context?): Boolean {
