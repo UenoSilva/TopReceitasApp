@@ -2,14 +2,12 @@ package br.com.topreceitas.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.topreceitas.R
-import br.com.topreceitas.data.local.ReceitasRepository
 import br.com.topreceitas.databinding.ReceitaItemBinding
 import br.com.topreceitas.domain.Receita
 import br.com.topreceitas.ui.ReceitaDetailsActivity
@@ -46,7 +44,8 @@ class ReceitasAdapter(
         holder.favorite.setOnClickListener {
             val receita = receitas[position]
             if (receita.isFavorite) {
-                MaterialAlertDialogBuilder(context)
+                MaterialAlertDialogBuilder(context,
+                    com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog)
                     .setTitle("Remover receita")
                     .setMessage("Deseja remove ${receita.title} da lista de favoritos?")
                     .setNeutralButton("CANCELAR") { _, _ ->

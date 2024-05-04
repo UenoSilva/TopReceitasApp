@@ -6,17 +6,16 @@ import android.content.Context
 import android.provider.BaseColumns
 import android.util.Log
 import android.widget.Toast
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_CATEGORIA
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_DICAS
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_ID
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_IMAGE
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_INGREDIENTES
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_PORCAO
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_PREPARO
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_TIMER
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.COLUMN_NAME_TITULO
-import br.com.topreceitas.data.local.ReceitaContract.ReceitaEntry.TABLE_NAME
-import br.com.topreceitas.data.local.ReceitaContract.TABLE_RECEITA
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_CATEGORIA
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_DICAS
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_ID
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_IMAGE
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_INGREDIENTES
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_PORCAO
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_PREPARO
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_TIMER
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.COLUMN_NAME_TITULO
+import br.com.topreceitas.data.local.MinhasReceitasContract.ReceitaEntry.TABLE_NAME
 import br.com.topreceitas.domain.Categoria
 import br.com.topreceitas.domain.Ingredients
 import br.com.topreceitas.domain.Preparo
@@ -24,11 +23,11 @@ import br.com.topreceitas.domain.Receita
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class ReceitasRepository(private val context: Context) {
+class MinhasReceitasRepository(private val context: Context) {
 
     private fun save(receita: Receita): Boolean {
         var isSaved = false
-        val dbHelper = ReceitasDbHelper(context)
+        val dbHelper = ReceitasFavoritasDbHelper(context)
         val db = dbHelper.writableDatabase
         val gson = Gson()
 
@@ -65,7 +64,7 @@ class ReceitasRepository(private val context: Context) {
     }
 
     private fun findViewById(id: Int): Receita {
-        val dbHelper = ReceitasDbHelper(context)
+        val dbHelper = ReceitasFavoritasDbHelper(context)
         val db = dbHelper.readableDatabase
         val gson = Gson()
         val columns = arrayOf(
@@ -144,7 +143,7 @@ class ReceitasRepository(private val context: Context) {
 
     @SuppressLint("Recycle")
     fun getAllReceitas(): MutableList<Receita> {
-        val dbHelper = ReceitasDbHelper(context)
+        val dbHelper = ReceitasFavoritasDbHelper(context)
         val db = dbHelper.readableDatabase
         val gson = Gson()
         val columns = arrayOf(
@@ -212,7 +211,7 @@ class ReceitasRepository(private val context: Context) {
 
 
     fun delete(id: Int) {
-        val dbHelper = ReceitasDbHelper(context)
+        val dbHelper = ReceitasFavoritasDbHelper(context)
         val db = dbHelper.readableDatabase
         val filter = "$COLUMN_NAME_ID = ?"
         val filterValues = arrayOf(id.toString())

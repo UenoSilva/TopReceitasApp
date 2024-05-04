@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AddReceitaActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout_minhas_receita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/top_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="Add nova receita" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout_minhas_receita">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_nome"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome da receita"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconContentDescription="Nome da receita"
+                app:startIconDrawable="@drawable/ic_name_receita">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_porcao"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Porções"
+                app:layout_constraintEnd_toStartOf="@id/til_timer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_nome"
+                app:startIconDrawable="@drawable/ic_person">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_timer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:hint="Porções"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/til_porcao"
+                app:layout_constraintTop_toBottomOf="@id/til_nome"
+                app:layout_constraintTop_toTopOf="@id/til_porcao"
+                app:startIconDrawable="@drawable/ic_timer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_categoria"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Categoria"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_porcao">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/md_divider_one"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/til_categoria" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_ingredientes"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Ingrediente/Titulo"
+                app:helperText="Digite o ingrediente e aperte (Adicionar Ingrediente), caso queira adicionar um tilulo aos ingredientes aperte(Adicionar titulo). Por exemplo:\n\n\tTitulo -> Bolo\n\tIngrediente -> Ingredientes do bolo\n\tTitulo -> Cobertura\n\tIngrediente -> Ingredientes da cobertura"
+                app:helperTextEnabled="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/md_divider_one"
+                app:startIconDrawable="@drawable/ic_timer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textLongMessage" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_new_ingredient_tilulo"
+                android:layout_width="150dp"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:elevation="20dp"
+                android:text="Adicionar\ntitulo"
+                app:layout_constraintEnd_toStartOf="@id/add_new_ingredient"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_ingredientes" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_new_ingredient"
+                android:layout_width="150dp"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_height="wrap_content"
+                android:elevation="20dp"
+                android:text="Adicionar\nIngrediente"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/add_new_ingredient_tilulo"
+                app:layout_constraintTop_toTopOf="@id/add_new_ingredient_tilulo" />
+
+            <TextView
+                android:id="@+id/tv_ingre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Ingredientes"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_new_ingredient_tilulo" />
+
+            <ListView
+                android:id="@+id/list_ingredientes"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_ingre" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/md_divider_two"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/list_ingredientes" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_preparo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Preparo/Titulo"
+                app:helperText="Digite o modo de preparo e aperte (Adicionar Preparo), caso queira adicionar um tilulo ao modo de preparo, aperte(Adicionar titulo). Por exemplo:\n\n\tTitulo -> Bolo\n\tModo de preparo -> Preparo do bolo\n\tTitulo -> Cobertura\n\tModo de preparo -> Preparo da cobertura"
+                app:helperTextEnabled="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/md_divider_two"
+                app:startIconDrawable="@drawable/ic_timer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textLongMessage" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_new_preparo_titulo"
+                android:layout_width="150dp"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:elevation="10dp"
+                android:text="Adicionar\ntitulo"
+                app:layout_constraintEnd_toStartOf="@id/add_new_preparo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_preparo" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_new_preparo"
+                android:layout_width="150dp"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:text="Adicionar\nPreparo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/add_new_preparo_titulo"
+                app:layout_constraintTop_toTopOf="@id/add_new_preparo_titulo" />
+
+            <TextView
+                android:id="@+id/tv_prepa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Modo de Preparo"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_new_preparo_titulo" />
+
+            <ListView
+                android:id="@+id/list_preparo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_prepa" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_receita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:text="Salvar receita"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_preparo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

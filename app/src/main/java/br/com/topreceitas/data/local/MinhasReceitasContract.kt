@@ -2,10 +2,10 @@ package br.com.topreceitas.data.local
 
 import android.provider.BaseColumns
 
-object ReceitaContract {
+object MinhasReceitasContract {
 
     object ReceitaEntry : BaseColumns {
-        const val TABLE_NAME = "tb_receita"
+        const val TABLE_NAME = "tb_minhas_receitas"
         const val COLUMN_NAME_ID = "receita_id"
         const val COLUMN_NAME_TITULO = "titulo"
         const val COLUMN_NAME_IMAGE = "imgagem"

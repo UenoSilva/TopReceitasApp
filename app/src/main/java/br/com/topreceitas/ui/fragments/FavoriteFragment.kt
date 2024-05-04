@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import br.com.topreceitas.adapter.ReceitasAdapter
-import br.com.topreceitas.data.local.ReceitasRepository
+import br.com.topreceitas.data.local.ReceitasFavoritasRepository
 import br.com.topreceitas.databinding.FragmentFavoriteBinding
 import br.com.topreceitas.domain.Receita
 
@@ -18,7 +18,7 @@ class FavoriteFragment : Fragment() {
 
     private lateinit var receitas: MutableList<Receita>
     private lateinit var receitaAdapter: ReceitasAdapter
-    private lateinit var repository: ReceitasRepository
+    private lateinit var repository: ReceitasFavoritasRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,21 +30,21 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        repository = ReceitasRepository(requireContext())
+        repository = ReceitasFavoritasRepository(requireContext())
         receitas = repository.getAllReceitas()
         setupList(receitas)
     }
 
     override fun onStart() {
         super.onStart()
-        repository = ReceitasRepository(requireContext())
+        repository = ReceitasFavoritasRepository(requireContext())
         receitas = repository.getAllReceitas()
         setupList(receitas)
     }
 
     override fun onResume() {
         super.onResume()
-        repository = ReceitasRepository(requireContext())
+        repository = ReceitasFavoritasRepository(requireContext())
         receitas = repository.getAllReceitas()
         setupList(receitas)
     }
@@ -59,7 +59,7 @@ class FavoriteFragment : Fragment() {
         binding.rvReceitasFavorite.adapter = receitaAdapter
 
         receitaAdapter.receitaImteRemove = { receita ->
-            ReceitasRepository(requireContext()).delete(receita.id)
+            ReceitasFavoritasRepository(requireContext()).delete(receita.id)
             binding.rvReceitasFavorite.adapter =
                 ReceitasAdapter(requireContext(), repository.getAllReceitas())
             onResume()

@@ -3,10 +3,10 @@ package br.com.topreceitas.data.local
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import br.com.topreceitas.data.local.ReceitaContract.SQL_DELETE_ENTRIES
-import br.com.topreceitas.data.local.ReceitaContract.TABLE_RECEITA
+import br.com.topreceitas.data.local.ReceitasFavoritasContract.SQL_DELETE_ENTRIES
+import br.com.topreceitas.data.local.ReceitasFavoritasContract.TABLE_RECEITA
 
-class ReceitasDbHelper(context: Context) :
+class MinhasReceitasDbHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -24,6 +24,6 @@ class ReceitasDbHelper(context: Context) :
 
     companion object {
         const val DATABASE_VERSION = 1
-        const val DATABASE_NAME = "dbReceita.db"
+        const val DATABASE_NAME = "dbMinhasReceitas.db"
     }
 }

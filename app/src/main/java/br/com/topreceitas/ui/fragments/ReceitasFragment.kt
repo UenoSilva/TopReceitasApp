@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import br.com.topreceitas.adapter.ReceitasAdapter
 import br.com.topreceitas.data.ReceitaApi
-import br.com.topreceitas.data.local.ReceitasRepository
+import br.com.topreceitas.data.local.ReceitasFavoritasRepository
 import br.com.topreceitas.databinding.FragmentReceitasBinding
 import br.com.topreceitas.domain.Receita
 import br.com.topreceitas.manage.ReceitasManager
@@ -114,7 +114,7 @@ class ReceitasFragment : Fragment() {
         //Log.d("setup list", "${list.toString()}")
         //depois implementar o repository para receitas
         receitasAdapter.receitaItemAdd = { receita ->
-            ReceitasRepository(requireContext()).saveIfNotExist(receita)
+            ReceitasFavoritasRepository(requireContext()).saveIfNotExist(receita)
             //Log.e("salvouuuuuuu", receita.toString())
         }
     }
