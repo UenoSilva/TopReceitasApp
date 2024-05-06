@@ -1,4 +1,4 @@
-package br.com.topreceitas.data.local.receitasfavoritas
+package br.com.topreceitas.data.local
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
@@ -6,16 +6,16 @@ import android.content.Context
 import android.provider.BaseColumns
 import android.util.Log
 import android.widget.Toast
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_CATEGORIA
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_DICAS
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_ID
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_IMAGE
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_INGREDIENTES
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_PORCAO
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_PREPARO
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_TIMER
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_TITULO
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.TABLE_NAME
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_CATEGORIA
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_DICAS
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_ID
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_IMAGE
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_INGREDIENTES
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_PORCAO
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_PREPARO
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_TIMER
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_TITULO
+import br.com.topreceitas.data.local.ReceitasContract.ReceitasFavoritasEntry.TABLE_NAME
 import br.com.topreceitas.domain.Categoria
 import br.com.topreceitas.domain.Ingredients
 import br.com.topreceitas.domain.Preparo

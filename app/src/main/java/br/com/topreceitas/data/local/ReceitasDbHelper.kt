@@ -1,12 +1,12 @@
-package br.com.topreceitas.data.local.receitasfavoritas
+package br.com.topreceitas.data.local
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.SQL_DELETE_ENTRIES_MINHAS_RECEITAS
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.SQL_DELETE_ENTRIES_RECEITAS_FAVORITAS
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.TABLE_MINHAS_RECEITAS
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.TABLE_RECEITAS_FAVORITAS
+import br.com.topreceitas.data.local.ReceitasContract.SQL_DELETE_ENTRIES_MINHAS_RECEITAS
+import br.com.topreceitas.data.local.ReceitasContract.SQL_DELETE_ENTRIES_RECEITAS_FAVORITAS
+import br.com.topreceitas.data.local.ReceitasContract.TABLE_MINHAS_RECEITAS
+import br.com.topreceitas.data.local.ReceitasContract.TABLE_RECEITAS_FAVORITAS
 
 class ReceitasDbHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {

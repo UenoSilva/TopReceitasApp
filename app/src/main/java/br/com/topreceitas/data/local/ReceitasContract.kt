@@ -1,4 +1,4 @@
-package br.com.topreceitas.data.local.receitasfavoritas
+package br.com.topreceitas.data.local
 
 import android.provider.BaseColumns
 

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import br.com.topreceitas.adapter.ReceitasAdapter
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasFavoritasRepository
+import br.com.topreceitas.data.local.ReceitasFavoritasRepository
 import br.com.topreceitas.databinding.FragmentFavoriteBinding
 import br.com.topreceitas.domain.Receita
 

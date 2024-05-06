@@ -14,8 +14,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import br.com.topreceitas.R
-import br.com.topreceitas.data.local.receitasfavoritas.MinhasReceitasRepository
-import br.com.topreceitas.data.local.receitasfavoritas.ReceitasFavoritasRepository
+import br.com.topreceitas.data.local.MinhasReceitasRepository
 import br.com.topreceitas.databinding.ActivityAddReceitaBinding
 import br.com.topreceitas.domain.Categoria
 import br.com.topreceitas.domain.Ingredients
