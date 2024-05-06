@@ -99,10 +99,11 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_categoria"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Categoria"
+                app:layout_constraintEnd_toStartOf="@id/add_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_porcao">
 
@@ -112,6 +113,18 @@
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
+            <ImageView
+                android:id="@+id/add_image"
+                android:layout_width="67dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/til_categoria"
+                app:layout_constraintTop_toTopOf="@id/til_categoria" />
+
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/md_divider_one"
@@ -142,8 +155,8 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_new_ingredient_tilulo"
-                android:layout_width="150dp"
                 style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:elevation="20dp"
@@ -154,8 +167,8 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_new_ingredient"
-                android:layout_width="150dp"
                 style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:elevation="20dp"
                 android:text="Adicionar\nIngrediente"
@@ -210,8 +223,8 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_new_preparo_titulo"
-                android:layout_width="150dp"
                 style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:elevation="10dp"
@@ -222,8 +235,8 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_new_preparo"
-                android:layout_width="150dp"
                 style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
                 android:text="Adicionar\nPreparo"
@@ -251,11 +264,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_receita"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
                 android:text="Salvar receita"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

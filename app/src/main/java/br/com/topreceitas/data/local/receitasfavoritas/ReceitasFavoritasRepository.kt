@@ -1,4 +1,4 @@
-package br.com.topreceitas.data.local
+package br.com.topreceitas.data.local.receitasfavoritas
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
@@ -6,16 +6,16 @@ import android.content.Context
 import android.provider.BaseColumns
 import android.util.Log
 import android.widget.Toast
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_CATEGORIA
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_DICAS
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_ID
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_IMAGE
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_INGREDIENTES
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_PORCAO
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_PREPARO
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_TIMER
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.COLUMN_NAME_TITULO
-import br.com.topreceitas.data.local.ReceitasFavoritasContract.ReceitaEntry.TABLE_NAME
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_CATEGORIA
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_DICAS
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_ID
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_IMAGE
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_INGREDIENTES
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_PORCAO
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_PREPARO
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_TIMER
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.COLUMN_NAME_TITULO
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasContract.ReceitasFavoritasEntry.TABLE_NAME
 import br.com.topreceitas.domain.Categoria
 import br.com.topreceitas.domain.Ingredients
 import br.com.topreceitas.domain.Preparo
@@ -27,7 +27,7 @@ class ReceitasFavoritasRepository(private val context: Context) {
 
     private fun save(receita: Receita): Boolean {
         var isSaved = false
-        val dbHelper = ReceitasFavoritasDbHelper(context)
+        val dbHelper = ReceitasDbHelper(context)
         val db = dbHelper.writableDatabase
         val gson = Gson()
 
@@ -64,7 +64,7 @@ class ReceitasFavoritasRepository(private val context: Context) {
     }
 
     private fun findViewById(id: Int): Receita {
-        val dbHelper = ReceitasFavoritasDbHelper(context)
+        val dbHelper = ReceitasDbHelper(context)
         val db = dbHelper.readableDatabase
         val gson = Gson()
         val columns = arrayOf(
@@ -143,7 +143,7 @@ class ReceitasFavoritasRepository(private val context: Context) {
 
     @SuppressLint("Recycle")
     fun getAllReceitas(): MutableList<Receita> {
-        val dbHelper = ReceitasFavoritasDbHelper(context)
+        val dbHelper = ReceitasDbHelper(context)
         val db = dbHelper.readableDatabase
         val gson = Gson()
         val columns = arrayOf(
@@ -211,7 +211,7 @@ class ReceitasFavoritasRepository(private val context: Context) {
 
 
     fun delete(id: Int) {
-        val dbHelper = ReceitasFavoritasDbHelper(context)
+        val dbHelper = ReceitasDbHelper(context)
         val db = dbHelper.readableDatabase
         val filter = "$COLUMN_NAME_ID = ?"
         val filterValues = arrayOf(id.toString())

@@ -1,22 +1,34 @@
 package br.com.topreceitas.ui
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ListView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import br.com.topreceitas.R
+import br.com.topreceitas.data.local.receitasfavoritas.MinhasReceitasRepository
+import br.com.topreceitas.data.local.receitasfavoritas.ReceitasFavoritasRepository
 import br.com.topreceitas.databinding.ActivityAddReceitaBinding
+import br.com.topreceitas.domain.Categoria
 import br.com.topreceitas.domain.Ingredients
 import br.com.topreceitas.domain.Preparo
+import br.com.topreceitas.domain.Receita
 import br.com.topreceitas.manage.ReceitasManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.ArrayList
 
 class AddReceitaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddReceitaBinding
+    private lateinit var repository: MinhasReceitasRepository
 
     private lateinit var ingredienteAdapter: ArrayAdapter<String>
     private val ingredienteList = ArrayList<String>()
@@ -24,14 +36,21 @@ class AddReceitaActivity : AppCompatActivity() {
     private lateinit var modoPreparoAdapter: ArrayAdapter<String>
     private val modoPreparoList = ArrayList<String>()
 
+    private var imageUri: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddReceitaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        repository = MinhasReceitasRepository(this)
+
+        Log.d("salvou", "salvou: ${repository.getAllReceitas()}")
+
         setupIngredientes()
         setupModoPreparo()
         setupCategoria()
+        setupImage()
 
         binding.saveReceita.setOnClickListener {
             saveReceita()
@@ -44,7 +63,6 @@ class AddReceitaActivity : AppCompatActivity() {
         val porcao = binding.tilPorcao.editText?.text.toString().trim()
         val timer = binding.tilTimer.editText?.text.toString().trim()
         val categoria = binding.tilCategoria.editText?.text.toString().trim()
-
 
         Log.d("asdd", "$receitaTitulo $porcao $timer $categoria")
 
@@ -62,7 +80,8 @@ class AddReceitaActivity : AppCompatActivity() {
                 }
                 // Atualiza o novo título
                 tituloIngrediente = line.removePrefix(
-                    "Titulo:")
+                    "Titulo:"
+                )
             } else {
                 // Adiciona os itens à lista atual de itens
                 itemIngrediente.add(line)
@@ -87,7 +106,8 @@ class AddReceitaActivity : AppCompatActivity() {
                     itemModoPreparo.clear()
                 }
                 tituloModoPreparo = line.removePrefix(
-                    "Titulo:")
+                    "Titulo:"
+                )
             } else {
                 itemModoPreparo.add(line)
             }
@@ -99,20 +119,36 @@ class AddReceitaActivity : AppCompatActivity() {
 
         Log.d("hjhjhjjkj00", modoPreparo.toString())
 
+
+
         if (receitaTitulo.isNotEmpty() && porcao.isNotEmpty() && timer.isNotEmpty() &&
             ingredienteList.isNotEmpty() && modoPreparoList.isNotEmpty()
         ) {
-            Log.d("salvou", "salvou")
-        } else{
+
+            val receita = Receita(
+                id = repository.getAllReceitas().size,
+                title = receitaTitulo,
+                image = imageUri.toString(),
+                portion = porcao.toInt(),
+                timer = timer.toInt(),
+                category = listOf(Categoria(binding.tilCategoria.editText?.text.toString())),
+                ingredient = ingredients.toList(),
+                preparation = modoPreparo.toList(),
+                tips = null
+
+            )
+            repository.saveIfNotExist(receita)
+            Log.d("salvou", "salvou: ${repository.getAllReceitas()}")
+        } else {
             Toast.makeText(this, "Os campos devem ser preenchidos!", Toast.LENGTH_LONG).show()
         }
 
     }
 
-    private fun setupCategoria(){
+    private fun setupCategoria() {
         val items = mutableListOf<String>()
         ReceitasManager.getReceitas().forEach {
-            if(it.category?.isNotEmpty() == true){
+            if (it.category?.isNotEmpty() == true) {
                 it.category.forEach { categoria ->
                     categoria.type?.let { it1 -> items.add(it1) }
                 }
@@ -170,9 +206,20 @@ class AddReceitaActivity : AppCompatActivity() {
             //Log.e("acesssssss", "assssss $id")
             val itemSelecionado = ingredienteAdapter.getItem(position)
             if (itemSelecionado != null) {
-                ingredienteList.remove(itemSelecionado)
-                ingredienteAdapter.notifyDataSetChanged()
-                Toast.makeText(this, "Item $itemSelecionado removido", Toast.LENGTH_SHORT)
+                MaterialAlertDialogBuilder(
+                    this,
+                    com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                )
+                    .setTitle("Excluir Titulo/Ingrediente")
+                    .setMessage("Desejar remover $itemSelecionado?")
+                    .setNegativeButton("NÃO") { dialog, which ->
+                    }
+                    .setPositiveButton("SIM") { dialog, which ->
+                        ingredienteList.remove(itemSelecionado)
+                        ingredienteAdapter.notifyDataSetChanged()
+                        Toast.makeText(this, "Item $itemSelecionado removido", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                     .show()
             }
         }
@@ -223,11 +270,61 @@ class AddReceitaActivity : AppCompatActivity() {
         listViewModoPreparo.setOnItemClickListener { parent, view, position, id ->
             val itemSelecionado = modoPreparoAdapter.getItem(position)
             if (itemSelecionado != null) {
-                modoPreparoList.remove(itemSelecionado)
-                modoPreparoAdapter.notifyDataSetChanged()
-                Toast.makeText(this, "Item $itemSelecionado removido", Toast.LENGTH_SHORT)
+                MaterialAlertDialogBuilder(
+                    this,
+                    com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                )
+                    .setTitle("Excluir Titulo/Ingrediente")
+                    .setMessage("Desejar remover $itemSelecionado?")
+                    .setNegativeButton(
+                        "N" +
+                                "NÃO"
+                    ) { dialog, which ->
+                    }
+                    .setPositiveButton("SIM") { dialog, which ->
+                        modoPreparoList.remove(itemSelecionado)
+                        modoPreparoAdapter.notifyDataSetChanged()
+                        Toast.makeText(this, "Item $itemSelecionado removido", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                     .show()
             }
         }
     }
+
+
+    val IMAGE_GALLERY_REQUEST = 1
+
+    private fun setupImage() {
+        binding.addImage.setOnClickListener {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                val intent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(intent, IMAGE_GALLERY_REQUEST)
+            } else {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    IMAGE_GALLERY_REQUEST
+                )
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
+            val selectedImageUri: Uri? = data.data
+            if (selectedImageUri != null) {
+                // Aqui você pode lidar com a imagem selecionada (e.g., exibindo-a em uma ImageView)
+                imageUri = data.data!!
+                binding.addImage.setImageURI(selectedImageUri)
+            }
+        }
+    }
+
 }
