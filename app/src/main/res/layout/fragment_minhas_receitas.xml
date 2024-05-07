@@ -16,6 +16,38 @@
         app:spanCount="2"
         tools:listitem="@layout/receita_item" />
 
+    <LinearLayout
+        android:id="@+id/empty_state_favorite_receita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/empty_list"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lista Vazia"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adicione uma receita aos minhas receitas."
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_minha_receita"
         android:layout_width="wrap_content"

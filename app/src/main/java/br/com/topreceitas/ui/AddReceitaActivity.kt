@@ -44,7 +44,7 @@ class AddReceitaActivity : AppCompatActivity() {
 
         repository = MinhasReceitasRepository(this)
 
-        Log.d("salvou", "salvou: ${repository.getAllReceitas()}")
+        //Log.d("salvou", "salvou: ${repository.getAllReceitas()}")
 
         setupIngredientes()
         setupModoPreparo()
@@ -57,13 +57,12 @@ class AddReceitaActivity : AppCompatActivity() {
     }
 
     private fun saveReceita() {
-
         val receitaTitulo = binding.tilNome.editText?.text.toString().trim()
         val porcao = binding.tilPorcao.editText?.text.toString().trim()
         val timer = binding.tilTimer.editText?.text.toString().trim()
         val categoria = binding.tilCategoria.editText?.text.toString().trim()
 
-        Log.d("asdd", "$receitaTitulo $porcao $timer $categoria")
+        //Log.d("asdd", "$receitaTitulo $porcao $timer $categoria")
 
         val ingredients: MutableList<Ingredients> = mutableListOf()
         var tituloIngrediente = ""
@@ -91,8 +90,7 @@ class AddReceitaActivity : AppCompatActivity() {
             ingredients.add(Ingredients(tituloIngrediente, itemIngrediente.toList()))
         }
 
-        Log.d("dmadad", ingredients.toString())
-
+        //Log.d("dmadad", ingredients.toString())
 
         val modoPreparo: MutableList<Preparo> = mutableListOf()
         var tituloModoPreparo = ""
@@ -104,9 +102,7 @@ class AddReceitaActivity : AppCompatActivity() {
                     modoPreparo.add(Preparo(tituloModoPreparo, itemModoPreparo.toList()))
                     itemModoPreparo.clear()
                 }
-                tituloModoPreparo = line.removePrefix(
-                    "Titulo:"
-                )
+                tituloModoPreparo = line.removePrefix("Titulo:")
             } else {
                 itemModoPreparo.add(line)
             }
@@ -116,16 +112,19 @@ class AddReceitaActivity : AppCompatActivity() {
             modoPreparo.add(Preparo(tituloModoPreparo, itemModoPreparo.toList()))
         }
 
-        Log.d("hjhjhjjkj00", modoPreparo.toString())
-
-
+        //Log.d("hjhjhjjkj00", modoPreparo.toString())
 
         if (receitaTitulo.isNotEmpty() && porcao.isNotEmpty() && timer.isNotEmpty() &&
             ingredienteList.isNotEmpty() && modoPreparoList.isNotEmpty()
         ) {
-
+            var count = 0
+            repository.getAllReceitas().forEach { it ->
+                if (it.id == count) {
+                    count++
+                }
+            }
             val receita = Receita(
-                id = repository.getAllReceitas().size,
+                id = count,
                 title = receitaTitulo,
                 image = imageUri.toString(),
                 portion = porcao.toInt(),
@@ -134,13 +133,15 @@ class AddReceitaActivity : AppCompatActivity() {
                 ingredient = ingredients.toList(),
                 preparation = modoPreparo.toList(),
                 tips = null
-
             )
             repository.saveIfNotExist(receita)
-            Log.d("salvou", "salvou: ${repository.getAllReceitas()}")
+            //Log.d("salvou", "salvou: ${repository.getAllReceitas()}")
         } else {
             Toast.makeText(this, "Os campos devem ser preenchidos!", Toast.LENGTH_LONG).show()
         }
+
+        Toast.makeText(this, "Receita salva com sucesso!", Toast.LENGTH_SHORT).show()
+        finish()
 
     }
 
@@ -275,10 +276,7 @@ class AddReceitaActivity : AppCompatActivity() {
                 )
                     .setTitle("Excluir Titulo/Ingrediente")
                     .setMessage("Desejar remover $itemSelecionado?")
-                    .setNegativeButton(
-                        "N" +
-                                "NÃO"
-                    ) { dialog, which ->
+                    .setNegativeButton("NÃO") { dialog, which ->
                     }
                     .setPositiveButton("SIM") { dialog, which ->
                         modoPreparoList.remove(itemSelecionado)
@@ -290,7 +288,6 @@ class AddReceitaActivity : AppCompatActivity() {
             }
         }
     }
-
 
     val IMAGE_GALLERY_REQUEST = 1
 
@@ -314,6 +311,7 @@ class AddReceitaActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {

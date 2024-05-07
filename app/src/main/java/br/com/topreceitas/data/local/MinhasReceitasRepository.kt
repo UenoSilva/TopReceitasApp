@@ -32,7 +32,7 @@ class MinhasReceitasRepository(private val context: Context) {
 
         try {
             val values = ContentValues().apply {
-                put(COLUMN_NAME_ID, BaseColumns._ID)
+                put(COLUMN_NAME_ID, receita.id)
                 put(COLUMN_NAME_TITULO, receita.title)
                 put(COLUMN_NAME_IMAGE, receita.image)
                 put(COLUMN_NAME_PORCAO, receita.portion)

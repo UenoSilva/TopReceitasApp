@@ -18,7 +18,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class ReceitasAdapter(
     private val context: Context,
     private val receitas: List<Receita>,
-    private val isFavorite: Boolean = false
+    private val isMyReceita: Boolean = false
 ) : RecyclerView.Adapter<ReceitasAdapter.ReceitasViewHolder>() {
 
     var receitaItemAdd: (Receita) -> Unit = {}
@@ -33,7 +33,11 @@ class ReceitasAdapter(
 
     override fun onBindViewHolder(holder: ReceitasViewHolder, position: Int) {
         holder.title.text = receitas[position].title
-        Glide.with(holder.itemView.context).load(receitas[position].image).into(holder.image)
+        if(receitas[position].image?.isNotEmpty() == true) {
+            Glide.with(holder.itemView.context).load(receitas[position].image).into(holder.image)
+        }else{
+
+        }
         holder.portion.text = "${receitas[position].portion} pessoas"
         holder.timer.text = "${receitas[position].timer} min"
 
@@ -68,6 +72,9 @@ class ReceitasAdapter(
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ReceitaDetailsActivity::class.java)
             intent.putExtra("position", receitas[position].id)
+            if(isMyReceita) {
+                intent.putExtra("myReceita", 0)
+            }
             context.startActivity(intent)
         }
     }
