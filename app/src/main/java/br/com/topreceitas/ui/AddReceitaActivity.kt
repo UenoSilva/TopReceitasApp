@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -222,11 +223,43 @@ class AddReceitaActivity : AppCompatActivity() {
                     this,
                     com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
                 )
-                    .setTitle("Excluir Titulo/Ingrediente")
-                    .setMessage("Desejar remover $itemSelecionado?")
-                    .setNegativeButton("NÃO") { _, _ ->
+                    .setMessage("Desejar EDITAR/EXCLUIR $itemSelecionado?")
+                    .setNeutralButton("CANCELAR") { _, _ ->
                     }
-                    .setPositiveButton("SIM") { _, _ ->
+                    .setNegativeButton("EDITAR") { _, _ ->
+
+                        val editText = EditText(this)
+                        editText.setPadding(16, 16, 16, 16)
+                        editText.setText(itemSelecionado) // Mostrar o conteúdo atual no EditText
+
+                        MaterialAlertDialogBuilder(
+                            this,
+                            com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                        )
+                            .setTitle("Editar $itemSelecionado")
+                            .setView(editText)
+                            .setPositiveButton("Salvar") { dialog, _ ->
+                                val novoConteudo = editText.text.toString()
+                                // Aqui você pode aplicar a lógica para salvar o novo conteúdo
+                                // Substitua o item na lista com o novo conteúdo
+                                val index = ingredienteList.indexOf(itemSelecionado)
+                                if (index != -1) {
+                                    ingredienteList[index] = novoConteudo
+                                    ingredienteAdapter.notifyDataSetChanged()
+                                    Toast.makeText(
+                                        this,
+                                        "Item atualizado para: $novoConteudo",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("Cancelar") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+                    .setPositiveButton("EXCLUIR") { _, _ ->
                         ingredienteList.remove(itemSelecionado)
                         ingredienteAdapter.notifyDataSetChanged()
                         Toast.makeText(this, "Item $itemSelecionado removido", Toast.LENGTH_SHORT)
@@ -287,11 +320,41 @@ class AddReceitaActivity : AppCompatActivity() {
                     this,
                     com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
                 )
-                    .setTitle("Excluir Titulo/Ingrediente")
-                    .setMessage("Desejar remover $itemSelecionado?")
-                    .setNegativeButton("NÃO") { _, _ ->
+                    .setMessage("Desejar EDITAR/EXCLUIR $itemSelecionado?")
+                    .setNeutralButton("CANCELAR") { _, _ ->
+
                     }
-                    .setPositiveButton("SIM") { _, _ ->
+                    .setNegativeButton("EDITAR") { _, _ ->
+                        val editText = EditText(this)
+                        editText.setPadding(32, 16, 32, 16)
+                        editText.setText(itemSelecionado)
+
+                        MaterialAlertDialogBuilder(
+                            this,
+                            com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                        )
+                            .setTitle("Editar $itemSelecionado")
+                            .setView(editText)
+                            .setPositiveButton("SALVAR") { dialog, _ ->
+                                val novoConteudo = editText.text.toString()
+                                val index = modoPreparoList.indexOf(itemSelecionado)
+                                if (index != 1) {
+                                    modoPreparoList[index] = novoConteudo
+                                    modoPreparoAdapter.notifyDataSetChanged()
+                                    Toast.makeText(
+                                        this,
+                                        "Item atualizado para: $novoConteudo",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("CANCELAR") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+                    .setPositiveButton("EXCLUIR") { _, _ ->
                         modoPreparoList.remove(itemSelecionado)
                         modoPreparoAdapter.notifyDataSetChanged()
                         Toast.makeText(this, "Item $itemSelecionado removido", Toast.LENGTH_SHORT)
