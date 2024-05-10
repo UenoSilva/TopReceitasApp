@@ -1,6 +1,7 @@
 package br.com.topreceitas.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -24,6 +25,7 @@ import br.com.topreceitas.manage.ReceitasManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.ArrayList
 
+@Suppress("DEPRECATION")
 class AddReceitaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddReceitaBinding
@@ -54,13 +56,21 @@ class AddReceitaActivity : AppCompatActivity() {
         binding.saveReceita.setOnClickListener {
             saveReceita()
         }
+
     }
 
     private fun saveReceita() {
         val receitaTitulo = binding.tilNome.editText?.text.toString().trim()
         val porcao = binding.tilPorcao.editText?.text.toString().trim()
         val timer = binding.tilTimer.editText?.text.toString().trim()
-        val categoria = binding.tilCategoria.editText?.text.toString().trim()
+
+        if (imageUri == null) {
+            imageUri = Uri.parse(
+                "android.resource://" + resources.getResourcePackageName(R.drawable.receita_image)
+                        + '/' + resources.getResourceTypeName(R.drawable.receita_image)
+                        + '/' + resources.getResourceEntryName(R.drawable.receita_image)
+            )
+        }
 
         //Log.d("asdd", "$receitaTitulo $porcao $timer $categoria")
 
@@ -94,7 +104,7 @@ class AddReceitaActivity : AppCompatActivity() {
 
         val modoPreparo: MutableList<Preparo> = mutableListOf()
         var tituloModoPreparo = ""
-        val itemModoPreparo: MutableList<String> = mutableListOf<String>()
+        val itemModoPreparo: MutableList<String> = mutableListOf()
 
         modoPreparoList.forEach { line ->
             if (line.startsWith("Titulo:")) {
@@ -118,7 +128,7 @@ class AddReceitaActivity : AppCompatActivity() {
             ingredienteList.isNotEmpty() && modoPreparoList.isNotEmpty()
         ) {
             var count = 0
-            repository.getAllReceitas().forEach { it ->
+            repository.getAllReceitas().forEach {
                 if (it.id == count) {
                     count++
                 }
@@ -160,6 +170,7 @@ class AddReceitaActivity : AppCompatActivity() {
         (binding.tilCategoria.editText as? AutoCompleteTextView)?.setAdapter(adapter)
     }
 
+    @SuppressLint("PrivateResource")
     private fun setupIngredientes() {
         ingredienteAdapter = ArrayAdapter(this, R.layout.ingredient_list_item, ingredienteList)
         val listViewIngrediente: ListView = binding.listIngredientes
@@ -202,7 +213,7 @@ class AddReceitaActivity : AppCompatActivity() {
             }
         }
 
-        listViewIngrediente.setOnItemClickListener { parent, view, position, id ->
+        listViewIngrediente.setOnItemClickListener { _, _, position, _ ->
             //Log.e("acesssssss", "assssss $id")
             val itemSelecionado = ingredienteAdapter.getItem(position)
             if (itemSelecionado != null) {
@@ -212,9 +223,9 @@ class AddReceitaActivity : AppCompatActivity() {
                 )
                     .setTitle("Excluir Titulo/Ingrediente")
                     .setMessage("Desejar remover $itemSelecionado?")
-                    .setNegativeButton("NÃO") { dialog, which ->
+                    .setNegativeButton("NÃO") { _, _ ->
                     }
-                    .setPositiveButton("SIM") { dialog, which ->
+                    .setPositiveButton("SIM") { _, _ ->
                         ingredienteList.remove(itemSelecionado)
                         ingredienteAdapter.notifyDataSetChanged()
                         Toast.makeText(this, "Item $itemSelecionado removido", Toast.LENGTH_SHORT)
@@ -225,6 +236,7 @@ class AddReceitaActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("PrivateResource")
     private fun setupModoPreparo() {
         modoPreparoAdapter = ArrayAdapter(this, R.layout.ingredient_list_item, modoPreparoList)
         val listViewModoPreparo: ListView = binding.listPreparo
@@ -267,7 +279,7 @@ class AddReceitaActivity : AppCompatActivity() {
             }
         }
 
-        listViewModoPreparo.setOnItemClickListener { parent, view, position, id ->
+        listViewModoPreparo.setOnItemClickListener { _, _, position, _ ->
             val itemSelecionado = modoPreparoAdapter.getItem(position)
             if (itemSelecionado != null) {
                 MaterialAlertDialogBuilder(
@@ -276,9 +288,9 @@ class AddReceitaActivity : AppCompatActivity() {
                 )
                     .setTitle("Excluir Titulo/Ingrediente")
                     .setMessage("Desejar remover $itemSelecionado?")
-                    .setNegativeButton("NÃO") { dialog, which ->
+                    .setNegativeButton("NÃO") { _, _ ->
                     }
-                    .setPositiveButton("SIM") { dialog, which ->
+                    .setPositiveButton("SIM") { _, _ ->
                         modoPreparoList.remove(itemSelecionado)
                         modoPreparoAdapter.notifyDataSetChanged()
                         Toast.makeText(this, "Item $itemSelecionado removido", Toast.LENGTH_SHORT)
@@ -288,8 +300,6 @@ class AddReceitaActivity : AppCompatActivity() {
             }
         }
     }
-
-    val IMAGE_GALLERY_REQUEST = 1
 
     private fun setupImage() {
         binding.addImage.setOnClickListener {
@@ -316,12 +326,19 @@ class AddReceitaActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_GALLERY_REQUEST && resultCode == RESULT_OK && data != null) {
             val selectedImageUri: Uri? = data.data
+            Log.d("jlkjlkn", selectedImageUri.toString())
             if (selectedImageUri != null) {
                 // Aqui você pode lidar com a imagem selecionada (e.g., exibindo-a em uma ImageView)
                 imageUri = data.data!!
                 binding.addImage.setImageURI(selectedImageUri)
             }
+        } else {
+            binding.addImage.setImageResource(R.drawable.receita_image)
         }
+    }
+
+    companion object {
+        const val IMAGE_GALLERY_REQUEST = 1
     }
 
 }

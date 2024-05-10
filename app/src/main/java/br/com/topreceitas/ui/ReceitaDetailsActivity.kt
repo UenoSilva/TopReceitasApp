@@ -3,17 +3,12 @@ package br.com.topreceitas.ui
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import br.com.topreceitas.R
 import br.com.topreceitas.data.local.MinhasReceitasRepository
 import br.com.topreceitas.data.local.ReceitasFavoritasRepository
 import br.com.topreceitas.databinding.ActivityReceitaDetailsBinding
-import br.com.topreceitas.domain.Ingredients
-import br.com.topreceitas.domain.Preparo
 import br.com.topreceitas.domain.Receita
 import br.com.topreceitas.manage.ReceitasManager
 import com.bumptech.glide.Glide
-import kotlin.properties.Delegates
 
 class ReceitaDetailsActivity : AppCompatActivity() {
 
@@ -37,16 +32,22 @@ class ReceitaDetailsActivity : AppCompatActivity() {
         val myReceita = intent.getIntExtra("myReceita", -1)
 
         if (myReceita == 0) {
-            MinhasReceitasRepository(this).getAllReceitas().forEach {
-                if(it.id == position){
-                    receita = it
+            MinhasReceitasRepository(this).getAllReceitas().forEach { minhaReceita ->
+                if(minhaReceita.id == position){
+                    receita = minhaReceita
                 }
             }
             //MinhasReceitasRepository(this).getAllReceitas().toList()
         } else {
-            ReceitasFavoritasRepository(this).getAllReceitas().forEach {
-                if(it.id == position){
-                    receita = it
+            ReceitasFavoritasRepository(this).getAllReceitas().forEach { receitaFav ->
+                if(receitaFav.id == position){
+                    receita = receitaFav
+                }else{
+                    ReceitasManager.getReceitas().forEach {
+                        if(it.id == position){
+                            receita = it
+                        }
+                    }
                 }
             }
         }
@@ -63,31 +64,31 @@ class ReceitaDetailsActivity : AppCompatActivity() {
         val ingredients = receita.ingredient!!
         val preparo = receita.preparation!!
 
-        var text_ingredients = ""
-        var text_preparation = ""
+        var textIngredients = ""
+        var textPreparation = ""
 
         ingredients.forEach { item ->
             if (item.ingredientes_titulo.isNotEmpty()) {
-                text_ingredients += "${item.ingredientes_titulo.uppercase()}\n\n"
+                textIngredients += "${item.ingredientes_titulo.uppercase()}\n\n"
             }
             item.ingredientes_ingredientes.forEach { item2 ->
-                text_ingredients += "${item2}\n\n"
+                textIngredients += "${item2}\n\n"
             }
-            text_ingredients += "\n"
+            textIngredients += "\n"
         }
 
         preparo.forEach { item ->
             if (item.preparo_titulo.isNotEmpty()) {
-                text_preparation += "${item.preparo_titulo.uppercase()}\n\n"
+                textPreparation += "${item.preparo_titulo.uppercase()}\n\n"
             }
             item.preparo_modo.forEach { item2 ->
-                text_preparation += "${item2}\n\n"
+                textPreparation += "${item2}\n\n"
             }
-            text_preparation += "\n"
+            textPreparation += "\n"
         }
 
-        binding.tvIngredients.text = text_ingredients
-        binding.tvPreparoReceita.text = text_preparation
+        binding.tvIngredients.text = textIngredients
+        binding.tvPreparoReceita.text = textPreparation
     }
 
     private fun setupListener() {

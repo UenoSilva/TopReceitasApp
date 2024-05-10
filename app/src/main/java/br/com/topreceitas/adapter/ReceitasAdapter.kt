@@ -33,11 +33,7 @@ class ReceitasAdapter(
 
     override fun onBindViewHolder(holder: ReceitasViewHolder, position: Int) {
         holder.title.text = receitas[position].title
-        if(receitas[position].image?.isNotEmpty() == true) {
-            Glide.with(holder.itemView.context).load(receitas[position].image).into(holder.image)
-        }else{
-
-        }
+        Glide.with(holder.itemView.context).load(receitas[position].image).into(holder.image)
         holder.portion.text = "${receitas[position].portion} pessoas"
         holder.timer.text = "${receitas[position].timer} min"
 
@@ -48,8 +44,10 @@ class ReceitasAdapter(
         holder.favorite.setOnClickListener {
             val receita = receitas[position]
             if (receita.isFavorite) {
-                MaterialAlertDialogBuilder(context,
-                    com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog)
+                MaterialAlertDialogBuilder(
+                    context,
+                    com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                )
                     .setTitle("Remover receita")
                     .setMessage("Deseja remove ${receita.title} da lista de favoritos?")
                     .setNeutralButton("CANCELAR") { _, _ ->
@@ -72,15 +70,14 @@ class ReceitasAdapter(
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ReceitaDetailsActivity::class.java)
             intent.putExtra("position", receitas[position].id)
-            if(isMyReceita) {
+            if (isMyReceita) {
                 intent.putExtra("myReceita", 0)
             }
             context.startActivity(intent)
         }
     }
 
-
-    inner class ReceitasViewHolder(private val binding: ReceitaItemBinding) :
+    inner class ReceitasViewHolder(binding: ReceitaItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val image: ImageView = binding.receitaItemImage
         val title: TextView = binding.receitaItemName
