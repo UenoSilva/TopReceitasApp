@@ -53,6 +53,10 @@ class AddReceitaActivity : AppCompatActivity() {
         setupCategoria()
         setupImage()
 
+        binding.topAppBar.setNavigationOnClickListener {
+            finish()
+        }
+
         binding.saveReceita.setOnClickListener {
             saveReceita()
         }
@@ -145,13 +149,10 @@ class AddReceitaActivity : AppCompatActivity() {
                 tips = null
             )
             repository.saveIfNotExist(receita)
-            //Log.d("salvou", "salvou: ${repository.getAllReceitas()}")
+            finish()
         } else {
             Toast.makeText(this, "Os campos devem ser preenchidos!", Toast.LENGTH_LONG).show()
         }
-
-        Toast.makeText(this, "Receita salva com sucesso!", Toast.LENGTH_SHORT).show()
-        finish()
 
     }
 

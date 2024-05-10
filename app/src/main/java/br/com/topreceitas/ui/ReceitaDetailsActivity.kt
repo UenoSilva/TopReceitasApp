@@ -33,21 +33,27 @@ class ReceitaDetailsActivity : AppCompatActivity() {
 
         if (myReceita == 0) {
             MinhasReceitasRepository(this).getAllReceitas().forEach { minhaReceita ->
-                if(minhaReceita.id == position){
+                if (minhaReceita.id == position) {
                     receita = minhaReceita
                 }
             }
             //MinhasReceitasRepository(this).getAllReceitas().toList()
-        } else {
+        } else if (ReceitasFavoritasRepository(this).getAllReceitas().isNotEmpty()) {
             ReceitasFavoritasRepository(this).getAllReceitas().forEach { receitaFav ->
-                if(receitaFav.id == position){
+                if (receitaFav.id == position) {
                     receita = receitaFav
-                }else{
+                } else {
                     ReceitasManager.getReceitas().forEach {
-                        if(it.id == position){
+                        if (it.id == position) {
                             receita = it
                         }
                     }
+                }
+            }
+        } else {
+            ReceitasManager.getReceitas().forEach {
+                if (it.id == position) {
+                    receita = it
                 }
             }
         }

@@ -222,9 +222,7 @@ class MinhasReceitasRepository(private val context: Context) {
         val receitaId = findViewById(receita.id)
         if (receitaId.id == -1) {
             save(receita)
-            Toast.makeText(context, "Receita: ${receita.title} adicionada aos favoritos!", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(context, "Essa receita já está em favoritos!", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Receita salva com sucesso!", Toast.LENGTH_SHORT).show()
         }
     }
 }

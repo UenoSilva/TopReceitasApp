@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import br.com.topreceitas.R
 import br.com.topreceitas.adapter.ReceitasAdapter
 import br.com.topreceitas.data.local.MinhasReceitasRepository
 import br.com.topreceitas.databinding.FragmentMinhasReceitasBinding
@@ -63,7 +62,7 @@ class MinhasReceitasFragment : Fragment() {
         receitasAdapter = ReceitasAdapter(requireContext(), receitas, true)
         binding.rvMinhasReceitas.adapter = receitasAdapter
 
-        receitasAdapter.receitaImteRemove = { receita ->
+        receitasAdapter.receitaItemRemove = { receita ->
             MinhasReceitasRepository(requireContext()).delete(receita.id)
             binding.rvMinhasReceitas.adapter =
                 ReceitasAdapter(requireContext(), repository.getAllReceitas())

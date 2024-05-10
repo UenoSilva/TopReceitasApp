@@ -58,7 +58,7 @@ class FavoriteFragment : Fragment() {
         receitaAdapter = ReceitasAdapter(requireContext(), receitas)
         binding.rvReceitasFavorite.adapter = receitaAdapter
 
-        receitaAdapter.receitaImteRemove = { receita ->
+        receitaAdapter.receitaItemRemove = { receita ->
             ReceitasFavoritasRepository(requireContext()).delete(receita.id)
             binding.rvReceitasFavorite.adapter =
                 ReceitasAdapter(requireContext(), repository.getAllReceitas())

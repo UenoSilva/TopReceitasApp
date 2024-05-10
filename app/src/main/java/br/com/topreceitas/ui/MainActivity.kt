@@ -1,12 +1,10 @@
 package br.com.topreceitas.ui
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import br.com.topreceitas.R
 import br.com.topreceitas.adapter.ViewPageAdapter
 import br.com.topreceitas.databinding.ActivityMainBinding
@@ -32,11 +30,11 @@ class MainActivity : AppCompatActivity() {
         setupNavigationHearder()
     }
 
+    @SuppressLint("PrivateResource", "SetTextI18n")
     private fun setupNavigationHearder() {
-        var navigationHeaderBinding =
+        val navigationHeaderBinding =
             HeaderNavigationDrawerBinding.bind(binding.navigationView.getHeaderView(0))
         navigationHeaderBinding.linceca.setOnClickListener {
-            Log.d("uuuuuu", "Button clicked")
             MaterialAlertDialogBuilder(
                 this,
                 com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
@@ -72,7 +70,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         navigationHeaderBinding.modoEscuro.setOnClickListener {
-            Log.d("aaaaaaaiiiii", "iiiiiaaaa")
             MaterialAlertDialogBuilder(
                 this,
                 com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
@@ -115,10 +112,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val mOnNavigationItemSelectListener = NavigationBarView.OnItemSelectedListener { item ->
-
         when (item.itemId) {
             R.id.home -> {
-                //Log.e("uenee", "fragment_receitas")
                 binding.viewPage.currentItem = 0
                 return@OnItemSelectedListener true
             }
@@ -149,4 +144,5 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
 }

@@ -22,7 +22,7 @@ class ReceitasAdapter(
 ) : RecyclerView.Adapter<ReceitasAdapter.ReceitasViewHolder>() {
 
     var receitaItemAdd: (Receita) -> Unit = {}
-    var receitaImteRemove: (Receita) -> Unit = {}
+    var receitaItemRemove: (Receita) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReceitasViewHolder {
         val binding = ReceitaItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -55,7 +55,7 @@ class ReceitasAdapter(
                     .setNegativeButton("NÃO") { _, _ ->
                     }
                     .setPositiveButton("SIM") { _, _ ->
-                        receitaImteRemove(receita)
+                        receitaItemRemove(receita)
                     }
                     .show()
 

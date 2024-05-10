@@ -51,7 +51,7 @@ class ReceitasFragment : Fragment() {
             //Log.d("GET ALL RECEITAS", "RECEITAS AQUI UJIII")
             getAllReceitas()
         } else {
-            Log.e("ERRor", "deu um error")
+            //Log.e("ERRor", "deu um error")
             binding.pbLoader.visibility = View.GONE
             binding.rvReceitas.visibility = View.GONE
             binding.containerStatusInternet.visibility = View.VISIBLE

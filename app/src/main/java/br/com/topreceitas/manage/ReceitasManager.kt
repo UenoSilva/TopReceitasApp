@@ -17,4 +17,5 @@ object ReceitasManager {
     fun getReceitas(): MutableList<Receita> {
         return receitas
     }
+
 }
