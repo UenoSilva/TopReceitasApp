@@ -21,11 +21,12 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/top_app_bar"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_menu"
+                app:navigationIconTint="@color/white"
                 app:title="@string/app_name" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -51,6 +52,7 @@
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.BottomNavigationView"
                 android:layout_height="wrap_content"
                 app:menu="@menu/bottom_navigation_menu" />
 

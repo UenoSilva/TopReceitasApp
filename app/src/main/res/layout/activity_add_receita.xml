@@ -18,7 +18,9 @@
             android:id="@+id/top_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:minHeight="?attr/actionBarSize"
+            app:navigationIconTint="@color/white"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:title="Add nova receita" />
 
@@ -123,7 +125,8 @@
                 android:src="@drawable/ic_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/til_categoria"
-                app:layout_constraintTop_toTopOf="@id/til_categoria" />
+                app:layout_constraintTop_toTopOf="@id/til_categoria"
+                app:tint="@color/red_light" />
 
 
             <com.google.android.material.divider.MaterialDivider
@@ -144,7 +147,7 @@
                 app:helperTextEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/md_divider_one"
-                app:startIconDrawable="@drawable/ic_timer">
+                app:startIconDrawable="@drawable/ic_add_ingredient">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -212,7 +215,7 @@
                 app:helperTextEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/md_divider_two"
-                app:startIconDrawable="@drawable/ic_timer">
+                app:startIconDrawable="@drawable/ic_preparo">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -269,6 +272,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
                 android:text="Salvar receita"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

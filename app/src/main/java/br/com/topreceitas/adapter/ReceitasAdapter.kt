@@ -49,7 +49,7 @@ class ReceitasAdapter(
                     com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
                 )
                     .setTitle("Remover receita")
-                    .setMessage("Deseja remove ${receita.title} da lista de favoritos?")
+                    .setMessage("Deseja remove ${receita.title} da lista?")
                     .setNeutralButton("CANCELAR") { _, _ ->
                     }
                     .setNegativeButton("NÃO") { _, _ ->

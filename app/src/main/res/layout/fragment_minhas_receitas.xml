@@ -55,6 +55,7 @@
         android:layout_gravity="right|bottom"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:contentDescription="adicionar uma nova receita"
         tools:ignore="RtlHardcoded" />
 

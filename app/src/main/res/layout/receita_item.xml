@@ -22,12 +22,14 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/favorite_receita"
-            style="?attr/materialIconButtonFilledTonalStyle"
+            style="?attr/materialIconButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:focusable="true"
+            app:iconSize="32dp"
             app:icon="@drawable/ic_favorite_border"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/receita_item_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
