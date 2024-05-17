@@ -2,7 +2,7 @@
 
 O Top Receitas App é uma aplicação móvel que permite aos usuários descobrir e gerenciar receitas de culinária. Esta aplicação foi desenvolvida como parte de um projeto de demonstração para mostrar conceitos de desenvolvimento de aplicativos Android usando Kotlin.
 
-# Tecnologia Utilizadas
+## Tecnologia Utilizadas
 
 - Android SDK e Kotlin
 - Glide
