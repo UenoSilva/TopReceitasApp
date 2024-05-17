@@ -101,7 +101,7 @@ receitaapp/
 ├── build.gradle            # Configurações de build do projeto
 ├── settings.gradle         # Configurações do projeto
 └── README.md               # Documentação do projeto
-
+```
 
 ## Api
 
@@ -113,6 +113,7 @@ O Top Receitas App utiliza o GitHub Pages para simular uma API que fornece os da
 
 A API retorna os dados das receitas em formato JSON. Aqui está a estrutura do JSON:
 
+```Json
 {
   "id": 0,
   "titulo": "Isca de Frango Crocante",
@@ -153,7 +154,7 @@ A API retorna os dados das receitas em formato JSON. Aqui está a estrutura do J
   ],
   "dicas": "Se desejar, prepare a isca de frango crocante na airfryer é só adicionar um fio de óleo ou azeite nas iscas, misturar bem e colocar na airfryer a 180ºC de 15 a 20 minutos ou até dourar. Na hora de servir, tragar mais opções de sabores e escolha sua Maionese Hellmann’s Saborizada preferida."
 }
-
+```
 
 ## Licença
 
