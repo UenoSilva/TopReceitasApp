@@ -103,17 +103,16 @@ receitaapp/
 └── README.md               # Documentação do projeto
 
 
-# Api
+## Api
 
-## Simulação da API
+### Simulação da API
 
 O Top Receitas App utiliza o GitHub Pages para simular uma API que fornece os dados das receitas. A URL da API é https://uenosilva.github.io/TopReceitasApp/api/receitas.json.
 
-## Estrutura do JSON
+### Estrutura do JSON
 
 A API retorna os dados das receitas em formato JSON. Aqui está a estrutura do JSON:
 
-```
 {
   "id": 0,
   "titulo": "Isca de Frango Crocante",
@@ -154,13 +153,13 @@ A API retorna os dados das receitas em formato JSON. Aqui está a estrutura do J
   ],
   "dicas": "Se desejar, prepare a isca de frango crocante na airfryer é só adicionar um fio de óleo ou azeite nas iscas, misturar bem e colocar na airfryer a 180ºC de 15 a 20 minutos ou até dourar. Na hora de servir, tragar mais opções de sabores e escolha sua Maionese Hellmann’s Saborizada preferida."
 }
-```
+
 
 ## Licença
 
 Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
-# Links e Referências 
+## Links e Referências 
 
 - `[Kotlin](https://kotlinlang.org/docs/home.html)`
 - `[Developer Android](https://developer.android.com/topic/architecture/intro?hl=pt-br)`
