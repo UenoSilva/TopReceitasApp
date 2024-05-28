@@ -3,6 +3,8 @@ package br.com.topreceitas.ui
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import br.com.topreceitas.R
 import br.com.topreceitas.data.local.MinhasReceitasRepository
 import br.com.topreceitas.data.local.ReceitasFavoritasRepository
 import br.com.topreceitas.databinding.ActivityReceitaDetailsBinding
@@ -62,7 +64,14 @@ class ReceitaDetailsActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun getInformation() {
-        Glide.with(this).load(receita.image).into(binding.ivImageReceita)
+
+        if (!receita.image.isNullOrBlank()) {
+            Glide.with(this).load(receita.image).into(binding.ivImageReceita)
+            Log.i("image", receita.image.toString())
+        } else {
+            Glide.with(this).load(R.drawable.receita_image).into(binding.ivImageReceita)
+        }
+
         binding.tvNameReceita.text = receita.title
         binding.tvPorcaoReceita.text = "${receita.portion} pessoas"
         binding.tvTimerReceita.text = "${receita.timer} min"

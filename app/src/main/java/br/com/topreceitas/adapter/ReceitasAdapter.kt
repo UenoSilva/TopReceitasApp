@@ -14,6 +14,7 @@ import br.com.topreceitas.databinding.ReceitaItemBinding
 import br.com.topreceitas.domain.Receita
 import br.com.topreceitas.ui.ReceitaDetailsActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -36,7 +37,14 @@ class ReceitasAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ReceitasViewHolder, position: Int) {
         holder.title.text = receitas[position].title
-        Glide.with(holder.itemView.context).load(receitas[position].image).into(holder.image)
+
+        if (receitas[position].image != null) {
+            Glide.with(holder.itemView.context).load(receitas[position].image).into(holder.image)
+        } else {
+            Glide.with(holder.itemView.context).load(R.drawable.receita_image).into(holder.image)
+        }
+
+
         holder.portion.text = "${receitas[position].portion} pessoas"
         holder.timer.text = "${receitas[position].timer} min"
 
@@ -49,7 +57,7 @@ class ReceitasAdapter(
             if (receita.isFavorite) {
                 MaterialAlertDialogBuilder(
                     context,
-                    com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
+                    ThemeOverlay_MaterialComponents_MaterialAlertDialog
                 )
                     .setTitle("Remover receita")
                     .setMessage("Deseja remove ${receita.title} da lista?")
@@ -80,10 +88,11 @@ class ReceitasAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(list: List<Receita>) {
         receitas.clear()
         receitas.addAll(list)
-        Log.i("adapter", receitas.toString())
+        //Log.i("adapter", receitas.toString())
         notifyDataSetChanged()
     }
 

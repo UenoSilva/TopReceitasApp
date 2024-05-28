@@ -17,30 +17,20 @@
 
         <EditText
             android:id="@+id/search_edit_text"
+            style="@style/ShapeAppearanceOverlay.Material3.SearchBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Buscar Receita"
-            android:background="@drawable/search_bar"
-            android:elevation="4dp"
             android:layout_margin="8dp"
-            style="@style/ShapeAppearanceOverlay.Material3.SearchBar"
-            android:singleLine="true"
-           android:padding="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_bar"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:elevation="4dp"
+            android:hint="Buscar Receita"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="8dp" />
-
-        <!-- Adicione um botão de pesquisa para iniciar a pesquisa -->
-        <ImageButton
-            android:id="@+id/search_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_search"
-            android:onClick="onSearchClicked" />
+            android:padding="8dp"
+            android:singleLine="true" />
 
     </LinearLayout>
 
@@ -52,11 +42,11 @@
         android:orientation="vertical"
         android:padding="10dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_container"
+        app:spanCount="2"
         tools:listitem="@layout/receita_item" />
 
 
@@ -87,12 +77,13 @@
 
     </LinearLayout>
 
+
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/pb_loader"
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

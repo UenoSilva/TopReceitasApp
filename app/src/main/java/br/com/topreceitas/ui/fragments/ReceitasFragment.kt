@@ -42,7 +42,6 @@ class ReceitasFragment : Fragment() {
 
     private lateinit var receitaApi: ReceitaApi
     private lateinit var receitasAdapter: ReceitasAdapter
-    //private lateinit var list: List<Receita>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -53,10 +52,9 @@ class ReceitasFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRetrofit()
-
         setupSearch(view)
-
     }
 
     override fun onResume() {
@@ -80,15 +78,6 @@ class ReceitasFragment : Fragment() {
     @SuppressLint("ServiceCast")
     private fun setupSearch(view: View) {
         val searchEditText = view.findViewById<EditText>(R.id.search_edit_text)
-        val searchButton = view.findViewById<ImageButton>(R.id.search_button)
-
-        searchButton.setOnClickListener {
-            val query = searchEditText.text.toString().trim()
-            //filterReceitas(query)
-            // Esconda o teclado virtual após iniciar a pesquisa
-            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(searchEditText.windowToken, 0)
-        }
 
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

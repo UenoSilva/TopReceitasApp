@@ -77,7 +77,7 @@ class AddReceitaActivity : AppCompatActivity() {
             )
         }
 
-        //Log.d("asdd", "$receitaTitulo $porcao $timer $categoria")
+
 
         val ingredients: MutableList<Ingredients> = mutableListOf()
         var tituloIngrediente = ""
@@ -372,8 +372,8 @@ class AddReceitaActivity : AppCompatActivity() {
                     Manifest.permission.READ_EXTERNAL_STORAGE
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-                val intent =
-                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
                 startActivityForResult(intent, IMAGE_GALLERY_REQUEST)
             } else {
                 ActivityCompat.requestPermissions(
