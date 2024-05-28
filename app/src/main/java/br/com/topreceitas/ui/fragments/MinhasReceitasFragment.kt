@@ -58,7 +58,7 @@ class MinhasReceitasFragment : Fragment() {
         _binding = null
     }
 
-    private fun setupList(receitas: List<Receita>) {
+    private fun setupList(receitas: MutableList<Receita>) {
         receitasAdapter = ReceitasAdapter(requireContext(), receitas, true)
         binding.rvMinhasReceitas.adapter = receitasAdapter
 

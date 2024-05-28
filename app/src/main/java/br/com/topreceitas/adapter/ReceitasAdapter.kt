@@ -1,7 +1,9 @@
 package br.com.topreceitas.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -17,7 +19,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ReceitasAdapter(
     private val context: Context,
-    private val receitas: List<Receita>,
+    private val receitas: MutableList<Receita>,
     private val isMyReceita: Boolean = false
 ) : RecyclerView.Adapter<ReceitasAdapter.ReceitasViewHolder>() {
 
@@ -31,6 +33,7 @@ class ReceitasAdapter(
 
     override fun getItemCount() = receitas.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ReceitasViewHolder, position: Int) {
         holder.title.text = receitas[position].title
         Glide.with(holder.itemView.context).load(receitas[position].image).into(holder.image)
@@ -75,6 +78,13 @@ class ReceitasAdapter(
             }
             context.startActivity(intent)
         }
+    }
+
+    fun updateList(list: List<Receita>) {
+        receitas.clear()
+        receitas.addAll(list)
+        Log.i("adapter", receitas.toString())
+        notifyDataSetChanged()
     }
 
     inner class ReceitasViewHolder(binding: ReceitaItemBinding) :

@@ -1,22 +1,33 @@
 package br.com.topreceitas.ui.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import br.com.topreceitas.R
 import br.com.topreceitas.adapter.ReceitasAdapter
 import br.com.topreceitas.data.ReceitaApi
 import br.com.topreceitas.data.local.ReceitasFavoritasRepository
 import br.com.topreceitas.databinding.FragmentReceitasBinding
 import br.com.topreceitas.domain.Receita
 import br.com.topreceitas.manage.ReceitasManager
+import com.google.android.material.search.SearchBar
+import com.google.android.material.search.SearchView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,10 +42,10 @@ class ReceitasFragment : Fragment() {
 
     private lateinit var receitaApi: ReceitaApi
     private lateinit var receitasAdapter: ReceitasAdapter
+    //private lateinit var list: List<Receita>
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentReceitasBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,6 +54,9 @@ class ReceitasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRetrofit()
+
+        setupSearch(view)
+
     }
 
     override fun onResume() {
@@ -63,10 +77,44 @@ class ReceitasFragment : Fragment() {
         _binding = null
     }
 
+    @SuppressLint("ServiceCast")
+    private fun setupSearch(view: View) {
+        val searchEditText = view.findViewById<EditText>(R.id.search_edit_text)
+        val searchButton = view.findViewById<ImageButton>(R.id.search_button)
+
+        searchButton.setOnClickListener {
+            val query = searchEditText.text.toString().trim()
+            //filterReceitas(query)
+            // Esconda o teclado virtual após iniciar a pesquisa
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(searchEditText.windowToken, 0)
+        }
+
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Implemente aqui a lógica que você deseja executar quando o texto de pesquisa muda
+                val query = s.toString()
+                Log.i("query", query)
+
+                val list = ReceitasManager.getReceitas().filter { receita ->
+                    receita.title!!.lowercase().contains(query)
+                }
+
+                Log.i("lista", list.toString())
+
+                receitasAdapter.updateList(list)
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
     private fun setupRetrofit() {
-        val builder =
-            Retrofit.Builder().baseUrl("https://uenosilva.github.io/TopReceitasApp/api/")
-                .addConverterFactory(GsonConverterFactory.create()).build()
+        val builder = Retrofit.Builder().baseUrl("https://uenosilva.github.io/TopReceitasApp/api/")
+            .addConverterFactory(GsonConverterFactory.create()).build()
         receitaApi = builder.create(ReceitaApi::class.java)
         getAllReceitas()
     }
@@ -77,7 +125,7 @@ class ReceitasFragment : Fragment() {
                 if (response.isSuccessful) {
                     val receitas = response.body()
                     if (receitas != null) {
-                        setupList(receitas)
+                        setupList(receitas.toMutableList())
                         Log.d("getAllReceitas", "Receitas carregadas com sucesso: $receitas")
                     } else {
                         Log.e("getAllReceitas", "Resposta nula ou vazia.")
@@ -100,7 +148,7 @@ class ReceitasFragment : Fragment() {
         })
     }
 
-    private fun setupList(list: List<Receita>) {
+    private fun setupList(list: MutableList<Receita>) {
         //val adapter = ReceitasAdapter(list)
         // binding.rvReceitas.adapter = adapter
         ReceitasManager.addReceita(list)

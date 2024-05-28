@@ -54,7 +54,7 @@ class FavoriteFragment : Fragment() {
         _binding = null
     }
 
-    private fun setupList(receitas: List<Receita>) {
+    private fun setupList(receitas: MutableList<Receita>) {
         receitaAdapter = ReceitasAdapter(requireContext(), receitas)
         binding.rvReceitasFavorite.adapter = receitaAdapter
 
