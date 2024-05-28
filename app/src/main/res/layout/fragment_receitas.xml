@@ -11,15 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/search_edit_text"
-            style="@style/ShapeAppearanceOverlay.Material3.SearchBar"
+            style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:background="@drawable/search_bar"
@@ -31,6 +32,21 @@
             android:inputType="text"
             android:padding="8dp"
             android:singleLine="true" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_categoria"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="136dp"
+            android:layout_height="58dp"
+            android:layout_margin="9dp"
+            android:hint="Ordenar por ">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
