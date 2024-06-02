@@ -5,4 +5,5 @@
 
     <color name="red_light">#E03F20</color>
     <color name="red_dark">#9A3E2D</color>
+    <color name="gray">#FAF8F8</color>
 </resources>

@@ -83,9 +83,13 @@ class ReceitasFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // Implemente aqui a lógica que você deseja executar quando o texto de pesquisa muda
                 val query = s.toString()
-                Log.i("query", query)
+                binding.ibCloseSeach.visibility = View.VISIBLE
+                binding.ibCloseSeach.setOnClickListener {
+                    binding.searchEditText.setText("")
+                    binding.ibCloseSeach.visibility = View.GONE
+                }
+                //Log.i("query", query)
 
                 val list = ReceitasManager.getReceitas().filter { receita ->
                     receita.title!!.lowercase().contains(query)
@@ -93,12 +97,14 @@ class ReceitasFragment : Fragment() {
 
                 Log.i("lista", list.toString())
 
-                receitasAdapter.updateList(list)
-
+                if (list.isNotEmpty()) {
+                    receitasAdapter.updateList(list)
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {}
         })
+
     }
 
     private fun setupRetrofit() {
