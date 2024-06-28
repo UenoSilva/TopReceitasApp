@@ -6,7 +6,7 @@ O Top Receitas App é uma aplicação móvel que permite aos usuários descobrir
 
 - Android SDK e Kotlin
 - Glide
-- Material Components:
+- Material Components
 - SQLite
 - Retrofit2
 - Gson
